@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <!--img alt="Vue logo" src="./assets/logo.png"-->
+    <Header/>
+    <SideBar/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-//import HomeXD from './components/HomeXD.vue'
+import Header from './components/Header.vue'
+import SideBar from './components/SideBar.vue'
+
 
 export default {
   name: 'App',
   components: {
+    Header,
+    SideBar
   }
 }
 </script>
