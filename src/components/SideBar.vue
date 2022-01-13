@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 25%">
+    <!--div style="width: 25%">
       <ul class="list-group">
       <li class="list-group-item">An item</li>
       <li class="list-group-item">A second item</li>
@@ -7,7 +7,8 @@
       <li class="list-group-item">A fourth item</li>
       <li class="list-group-item">And a fifth one</li>
     </ul>
-    </div>
+    </div-->
+    <div></div>
 </template>
 
 
