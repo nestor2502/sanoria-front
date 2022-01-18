@@ -1,91 +1,64 @@
 <template>
-  <div class="login">
-    <div v-if="loggingIn" class="container-loading">
-      <img src="/loading.gif" alt="Loading Icon">
-    </div>
-    <p v-if="loginError">{{ loginError }}</p>
-    <p v-if="loginSuccessful">Login Successful</p>
-    <form @submit.prevent="loginSubmit">
-      <input type="email" placeholder="E-Mail" v-model="email">
-      <input type="password" placeholder="Password" v-model="password">
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <mdb-container>
+    <mdb-btn rounded color="default" @click.native="cascading = true">launch cascading register / login modal <mdb-icon icon="eye" class="ml-1"/></mdb-btn>
+    <mdb-modal :show="cascading" @close="cascading = false" cascade tabs>
+      <mdb-tab tabs justify class="light-blue darken-3">
+        <mdb-tab-item :active="tabs==1" @click.native.prevent="tabs = 1"><mdb-icon icon="user" class="mr-1"/>Login</mdb-tab-item>
+        <mdb-tab-item :active="tabs==2" @click.native.prevent="tabs = 2"><mdb-icon icon="user-plus" class="mr-1"/>Register</mdb-tab-item>
+      </mdb-tab>
+      <mdb-modal-body class="mx-3" v-if="tabs==1">
+        <mdb-input label="Your email" icon="envelope" type="email" class="mb-5"/>
+        <mdb-input label="Your password" icon="lock" type="password"/>
+        <div class="mt-2 text-center">
+          <mdb-btn color="info">Log in <mdb-icon icon="sign-in-alt" class="ml-1"/></mdb-btn>
+        </div>
+      </mdb-modal-body>
+      <mdb-modal-footer center v-if="tabs==1">
+        <div class="options text-center text-md-right mt-1">
+          <p>Not a member? <a href="#" @click="tabs=2">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+        <mdb-btn outline="info" class="ml-auto" @click.native="cascading=false">Close</mdb-btn>
+      </mdb-modal-footer>
+      <mdb-modal-body class="mx-3" v-if="tabs==2">
+        <mdb-input label="Your email" icon="envelope" type="email" class="mb-5"/>
+        <mdb-input label="Your password" icon="lock" type="password" class="mb-5"/>
+        <mdb-input label="Repeat password" icon="lock" type="password"/>
+        <div class="mt-2 text-center">
+          <mdb-btn color="info">Sign Up<mdb-icon icon="sign-in-alt" class="ml-1"/></mdb-btn>
+        </div>
+      </mdb-modal-body>
+      <mdb-modal-footer center v-if="tabs==2">
+        <div class="options text-center text-md-right mt-1">
+          <p>Already have an account? <a href="#" @click="tabs=1">Log in</a></p>
+        </div>
+        <mdb-btn outline="info" class="ml-auto" @click.native="cascading=false">Close</mdb-btn>
+      </mdb-modal-footer>
+    </mdb-modal>
+  </mdb-container>
 </template>
 
-<style scoped lang="scss">
-  .login {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 1.5rem;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    .container-loading {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0,0,0,.3);
-      img {
-        width: 2rem;
-        height: 2rem;
-      }
-    }
-    form {
-      display: flex;
-      flex-flow: column;
-      *:not(:last-child) {
-        margin-bottom: 1rem;
-      }
-      input {
-        padding: .5rem;
-      }
-      button {
-        padding: .5rem;
-        background-color: lightgray;
-        border: 1px solid gray;
-        border-radius: 3px;
-        cursor: pointer;
-        &:hover {
-          background-color: lightslategray;
-        }
-      }
-    }
-  }
-</style>
-
 <script>
-  import { mapState, mapActions } from 'vuex';
+  import { mdbContainer, mdbBtn, mdbModal, mdbTab, mdbTabItem, mdbModalBody, mdbInput, mdbModalFooter, mdbModalTitle, mdbIcon } from 'mdbvue';
   export default {
+    name: 'ModalExamplesPage',
+    components: {
+      mdbContainer,
+      mdbBtn,
+      mdbModal,
+      mdbTab,
+      mdbTabItem,
+      mdbModalBody,
+      mdbInput,
+      mdbModalFooter,
+      mdbIcon,
+      mdbModalTitle,
+      mdbModalTitle
+    },
     data() {
       return {
-        email: '',
-        password: ''
-      }
-    },
-    computed: {
-      ...mapState([
-        'loggingIn',
-        'loginError',
-        'loginSuccessful'
-      ])
-    },
-    methods: {
-      ...mapActions([
-        'doLogin'
-      ]),
-      loginSubmit() {
-        this.doLogin({
-          email: this.email,
-          password: this.password
-        });
+        cascading: false,
+        tabs: 1
       }
     }
   }
