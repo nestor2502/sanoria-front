@@ -207,5 +207,5 @@ export default{
 </script>
 
 <style scoped>
-  @import url(../assets/styles/style.css);
+  @import url(../assets/styles/Recipe.css);
 </style>
