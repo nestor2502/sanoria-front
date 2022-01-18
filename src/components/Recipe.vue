@@ -19,8 +19,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="receipe-slider owl-carousel">
-                        <img src="../assets/img/bg5.jpg" alt="" width="100%">
+                    <div>
+                        <img  class="recipe-image" src="https://www.edamam.com/web-img/e12/e12b8c5581226d7639168f41d126f2ff-l.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <h2>Vegetarian cheese salad</h2>
+                            <h2>Baked Chicken</h2>
                             <div class="receipe-duration">
                                 <h6>Low Carb</h6>
                                 <h6>Cook: 30 mins</h6>
