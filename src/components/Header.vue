@@ -47,9 +47,14 @@
           <button type="button" class="btn btn-outline-custom me-2">Login</button>
           <button type="button" class="btn btn-custom">Sign-up</button>
         </div>
-        <div v-if="true" class="d-flex align-items-center">
+        <div v-if="true" class="d-flex align-items-center container">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="https://github.com/mdo.png" @click="showModal = true" alt="mdo" width="32" height="32" class="rounded-circle">
+            <transition name="modal">
+            <div class="modal-mask" v-if="showModal">
+              <modal @close="closeModal"/>
+            </div>
+            </transition>
           </a>
         </div>
       </div>
@@ -60,11 +65,16 @@
 <script>
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
+import modal from './Login'
 
 export default {
   name: 'Header',
-  
-  components: {Slide},
+  components: {Slide, modal},
+  data() {
+    return {
+      showModal: false
+    }
+  },
   methods: {
     navega: function (route){
       router.push(route)
@@ -75,6 +85,9 @@ export default {
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
+    },
+    closeModal() {
+      this.showModal = false;
     }
   }
 }
