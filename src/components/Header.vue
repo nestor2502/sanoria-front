@@ -72,7 +72,7 @@
       </div>
       <div class="modal-body">
         Aqui va el contenido
-        <!-- <Login/> -->
+        <Modal/>
 
       </div>
       <div class="modal-footer">
@@ -88,12 +88,14 @@
 <script>
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
+import Modal from './Login.vue'
+
 export default {
   name: 'Header',
   props: {
     msg: String,
   },
-  components: {Slide},
+  components: {Slide, Modal},
   methods: {
     navega: function (route){
       router.push(route)
