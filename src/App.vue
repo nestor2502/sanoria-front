@@ -22,8 +22,8 @@ export default {
 </script>
 
 <style>
-router-view {
-  background-color: lightgrey;
+body {
+  overflow-x: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
