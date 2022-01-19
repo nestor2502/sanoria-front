@@ -47,18 +47,9 @@
           <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
           <button type="button" class="btn btn-custom">Sign-up</button>
         </div>
-<<<<<<< HEAD
         <div v-if="false" class="d-flex align-items-center">
-=======
-        <div v-if="true" class="d-flex align-items-center container">
->>>>>>> Login component
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" @click="showModal = true" alt="mdo" width="32" height="32" class="rounded-circle">
-            <transition name="modal">
-            <div class="modal-mask" v-if="showModal">
-              <modal @close="closeModal"/>
-            </div>
-            </transition>
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </div>
@@ -92,23 +83,12 @@
 <script>
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
-import modal from './Login'
-
 export default {
   name: 'Header',
-<<<<<<< HEAD
   props: {
     msg: String,
   },
   components: {Slide},
-=======
-  components: {Slide, modal},
-  data() {
-    return {
-      showModal: false
-    }
-  },
->>>>>>> Login component
   methods: {
     navega: function (route){
       router.push(route)
@@ -119,9 +99,6 @@ export default {
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
-    },
-    closeModal() {
-      this.showModal = false;
     }
   }
 }
@@ -132,61 +109,50 @@ export default {
   font-family: Ananias;
   src: url(../assets/font-family/Ananias.ttf);
 }
-
 .navbar-brand {
   font-size: x-large;
   font-family: Ananias;
 }
-
 header {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 1rem;
 }
-
 a i {
   color: #fff;
 }
-
 .btn-search{
   color: #abb545;
   background-color: transparent;
   border-color: #abb545;
 }
-
 .btn-search:hover {
   color: #abb545;
   background-color: transparent;
   border-color: #abb545;
 }
-
 .btn-outline-custom {
   color: #abb545;
   border-color: #abb545;
 }
-
 .btn-outline-custom:hover {
   color: #fff;
   background-color: #abb545;
   border-color: #abb545;
 }
-
 .btn-custom{
   color: #fff;
   background-color: #abb545;
   border-color: #abb545;
 }
-
 .btn-custom:hover {
   color: #abb545;
   background-color: #fff;
   border-color: #abb545;
 }
-
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-
 .bm-burger-button {
   cursor: pointer;
   height: 25px;
@@ -195,11 +161,9 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 0px;
   width: 30px;
 }
-
 .bm-burger-bars {
   background-color: #abb545;
 }
-
 .line-style {
   position: absolute;
   height: 11%;
@@ -215,12 +179,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .bm-cross {
   background: #7c746d;
 }
-
 .bm-cross-button {
   height: 24px;
   width: 24px;
 }
-
 .bm-menu {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
@@ -233,7 +195,6 @@ input[type="search"]::-webkit-search-cancel-button {
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
 }
-
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
