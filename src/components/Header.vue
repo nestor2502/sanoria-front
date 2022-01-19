@@ -49,7 +49,12 @@
         </div>
         <div v-if="false" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="https://github.com/mdo.png" @click="showModal = true" alt="mdo" width="32" height="32" class="rounded-circle">
+            <transition name="modal">
+            <div class="modal-mask" v-if="showModal">
+              <modal @close="closeModal"/>
+            </div>
+            </transition>
           </a>
         </div>
       </div>
@@ -99,6 +104,9 @@ export default {
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
+    },
+    closeModal() {
+      this.showModal = false;
     }
   }
 }
