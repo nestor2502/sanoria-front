@@ -43,17 +43,40 @@
             <button class="btn btn-search" type="submit"><i class="fa fa-search"></i></button>
           </div>
         </form>
-        <div v-if="false" class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-custom me-2">Login</button>
+        <div v-if="true" class="d-flex align-items-center">
+          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
           <button type="button" class="btn btn-custom">Sign-up</button>
         </div>
-        <div v-if="true" class="d-flex align-items-center">
+        <div v-if="false" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </div>
     </div>
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Aqui va el contenido
+        <!-- <Login/> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   </header>
 </template>
 
@@ -63,7 +86,9 @@ import {Slide} from 'vue-burger-menu'
 
 export default {
   name: 'Header',
-  
+  props: {
+    msg: String,
+  },
   components: {Slide},
   methods: {
     navega: function (route){
