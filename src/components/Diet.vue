@@ -9,7 +9,7 @@
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                <div><input class="form-check-input"  type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                                      <label class="form-check-label" for="flexCheckDefault">
                                         High-Fiber
                                     </label>
@@ -637,6 +637,7 @@ input {
   /* check-box*/
   .form-check-input {
     margin-left: 5px;
+    
 }
 }
 
