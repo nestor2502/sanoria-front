@@ -72,8 +72,6 @@ export default {
     },
     getRecipeId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)
-      console.log("urii")
-      console.log(uri)
       return uri
     }
   }

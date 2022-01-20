@@ -66,7 +66,7 @@ import {Slide} from 'vue-burger-menu'
 
 export default {
   created() {
-    console.log(this.$router.currentRoute.path); // path is /post
+    //console.log(this.$router.currentRoute.path); // path is /post
   },
   name: 'Header',
   props: {
