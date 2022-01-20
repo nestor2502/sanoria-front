@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center">
         <div class="col-12 col-lg-auto justify-content-start" id="dismiss">
-            <Slide noOverlay width="280"
+            <Slide noOverlay width="280" id="sidebar"
               @openMenu="onOverlay"
               @closeMenu="offOverlay">
                 <a id="profile" class="align-items-center" href="#">
