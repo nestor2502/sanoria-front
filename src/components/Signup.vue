@@ -72,7 +72,7 @@
 
 </template>
 
-<script>
+<script scoped>
 
   import router from '../router';
     export default {
@@ -94,7 +94,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 
 /* ==========================================================================
    #FONT

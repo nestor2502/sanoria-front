@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from  '@/components/Home'
-import Prueba from  '@/components/Prueba'
-import Registro from '@/components/Registro'
+import Signup from '@/components/Signup'
 import PersonInfo from '@/components/PersonInfo'
 import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
 import NotFound  from '@/components/NotFound'
+import Recipe from  '@/components/Recipe'
 
 Vue.use(Router);
 
@@ -18,19 +18,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/prueba',
-    name: 'Prueba',
-    component: Prueba
-  },
-  {
     path: '/personinfo',
     name: 'PersonInfo',
     component: PersonInfo
   },
   {
-    path: '/registro',
-    name: 'Registro',
-    component: Registro
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
   },
   {
     path: '/diet',
@@ -45,6 +40,11 @@ const routes = [
   { 
     path: "*", 
     component: NotFound 
+  }, 
+  {
+    path: '/recipe',
+    name: 'Recipe',
+    component: Recipe
   }
 ]
 
