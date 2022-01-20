@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
 	name: "Login",
 	data: function (){
@@ -46,7 +48,16 @@ export default {
 	},
 	methods:{
 		handleSave(){
-      console.log(this.dataObj);
+			axios.post('https://sanoria-api.herokuapp.com/auth/login', {
+				username: this.dataObj.email,
+				password: this.dataObj.password
+			}).then((res) => {
+				if (res.status === 201) {
+					console.log(res.data.access_token) //aki esta el token
+				} else {
+					console.log(res)
+				}
+			}).catch((err) => console.error(err))
       this.handleClose();
 		},
 		handleClose(){
