@@ -73,11 +73,7 @@
                               <i class="fas fas-arrow-right"> </i>
                             </button>
                         </div>
-                        <label class="checkbox-wrap checkbox-primary">
-                          test
-                          <input type= "checkbox">
-                          <span class="checkmark"></span>
-                        </label>
+
                     </form>
 
 
@@ -109,7 +105,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 
 /* ==========================================================================
    #FONT
