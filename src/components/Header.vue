@@ -81,6 +81,7 @@
 </template>
 
 <script>
+//import axios from 'axios';
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
 
@@ -100,121 +101,14 @@ export default {
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
+    },
+    findRecipes:function (){
+
     }
   }
 }
 </script>
 
 <style>
-@font-face {
-  font-family: Ananias;
-  src: url(../assets/font-family/Ananias.ttf);
-}
-
-.navbar-brand {
-  font-size: x-large;
-  font-family: Ananias;
-}
-
-header {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-}
-
-a i {
-  color: #fff;
-}
-
-.btn-search{
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-search:hover {
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-outline-custom {
-  color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-outline-custom:hover {
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom{
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom:hover {
-  color: #abb545;
-  background-color: #fff;
-  border-color: #abb545;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-.bm-burger-button {
-  cursor: pointer;
-  height: 25px;
-  left: 0px;
-  position: relative;
-  top: 0px;
-  width: 30px;
-}
-
-.bm-burger-bars {
-  background-color: #abb545;
-}
-
-.line-style {
-  position: absolute;
-  height: 11%;
-  left: 0;
-  right: 0;
-}
-.cross-style {
-  position: absolute;
-  top: 12px;
-  right: 2px;
-  cursor: pointer;
-}
-.bm-cross {
-  background: #7c746d;
-}
-
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-.bm-menu {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #f49839; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
-}
-
-.bm-item-list > * > span {
-  margin-left: 10px;
-  font-weight: 700;
-  color: white;
-}
+  @import url(../assets/styles/Header.css);
 </style>
