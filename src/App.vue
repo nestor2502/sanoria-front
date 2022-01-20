@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style>
+body{
+  overflow-x: hidden;
+}
+
 router-view {
   background-color: lightgrey;
 }
