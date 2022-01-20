@@ -14,6 +14,11 @@ Vue.use(Router);
 
 const routes = [
   {
+    path: '/',
+    name: 'Index',
+    component: Index
+  },
+  {
     path: '/home',
     name: 'Home',
     component: Home
@@ -47,11 +52,6 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
-  },
-  {
-    path: '/index',
-    name: 'Index',
-    component: Index
   }
 ]
 
