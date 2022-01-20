@@ -31,7 +31,7 @@
         </div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0">
           <li>
-            <a class="nav-link navbar-brand" href="#">
+            <a class="nav-link navbar-brand" @click="navega('/')" type="button">
               <span style="color:#acb549">Sano</span>
               <span style="color:#000000">ria</span>
             </a>
@@ -40,156 +40,62 @@
         <form class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
           <div class="input-group col-md-4">
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-search" type="submit"><i class="fa fa-search"></i></button>
+            <button class="btn btn-search" type="button" @click="findRecipes()"><i class="fa fa-search"></i></button>
           </div>
         </form>
-        <div v-if="false" class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-custom me-2">Login</button>
-          <button type="button" class="btn btn-custom">Sign-up</button>
-        </div>
         <div v-if="true" class="d-flex align-items-center">
+          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+          <button type="button" class="btn btn-custom" @click="navega('/signup')">Sign-up</button>
+        </div>
+        <div v-if="false" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </div>
     </div>
+    <!-- Button trigger modal -->
+
   </header>
 </template>
 
 <script>
+import axios from 'axios';
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
 
 export default {
   name: 'Header',
-  
+  props: {
+    msg: String,
+  },
   components: {Slide},
   methods: {
     navega: function (route){
       router.push(route)
         .catch(() => {})
     },
+    openRegistroPage: function() {
+      router.push({'name':'Registro'});
+    },
     onOverlay: function() {
       document.getElementById("overlay").style.display = "block";
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
+    },
+    findRecipes:function (){
+      console.log("entra en esta función")
+      axios.get('https://sanoria-api.herokuapp.com/recipe/search?recipeName=chicken')
+          .then( result => {
+            console.log("result")
+            console.log(result)
+          }).catch(e => console.log(e))
     }
   }
 }
 </script>
 
 <style>
-@font-face {
-  font-family: Ananias;
-  src: url(../assets/font-family/Ananias.ttf);
-}
-
-.navbar-brand {
-  font-size: x-large;
-  font-family: Ananias;
-}
-
-header {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-}
-
-#sidebar a i {
-  color: #fff;
-}
-
-.btn-search{
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-search:hover {
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-outline-custom {
-  color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-outline-custom:hover {
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom{
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom:hover {
-  color: #abb545;
-  background-color: #fff;
-  border-color: #abb545;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-.bm-burger-button {
-  cursor: pointer;
-  height: 25px;
-  left: 0px;
-  position: relative;
-  top: 0px;
-  width: 30px;
-}
-
-.bm-burger-bars {
-  background-color: #abb545;
-}
-
-.line-style {
-  position: absolute;
-  height: 11%;
-  left: 0;
-  right: 0;
-}
-.cross-style {
-  position: absolute;
-  top: 12px;
-  right: 2px;
-  cursor: pointer;
-}
-.bm-cross {
-  background: #7c746d;
-}
-
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-.bm-menu {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #f49839; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
-}
-
-.bm-item-list > * > span {
-  margin-left: 10px;
-  font-weight: 700;
-  color: white;
-}
+  @import url(../assets/styles/Header.css);
 </style>

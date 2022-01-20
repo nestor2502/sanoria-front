@@ -25,6 +25,9 @@ export default {
 body {
   overflow-x: hidden;
 }
+router-view {
+  background-color: lightgrey;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
