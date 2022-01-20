@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <img  class="recipe-image" src="https://www.edamam.com/web-img/e12/e12b8c5581226d7639168f41d126f2ff-l.jpg" alt="">
+                        <img  class="recipe-image" :src="recipe.image" alt="">
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <h2>Baked Chicken</h2>
+                            <h2>{{recipe.label}}</h2>
                             <div class="receipe-duration">
                                 <h6>Low Carb</h6>
                                 <h6>Cook: 30 mins</h6>
@@ -60,37 +60,11 @@
                         <div class="single-preparation-step d-flex">
                             <h4>Ingredients</h4>
                         </div>
-                        <div class="single-preparation-step d-flex">
+                        <div v-for="ingredient in recipe.ingredientLines" :key="ingredient.id" class="single-preparation-step d-flex">
                             <h4>01.</h4>
-                            <p>640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)</p>
+                            <p>{{ingredient}}</p>
                         </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>02.</h4>
-                            <p>1/2 teaspoon salt</p>
-                        </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>03.</h4>
-                            <p>1/4 teaspoon black pepper</p>
-                        </div>
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>04.</h4>
-                            <p>1 tablespoon butter - cultured unsalted (or olive oil)</p>
-                        </div>
-                        <div class="single-preparation-step d-flex">
-                            <h4>05.</h4>
-                            <p>240 grams onion sliced thin (1 large onion)</p>
-                        </div>
-                        <div class="single-preparation-step d-flex">
-                            <h4>06.</h4>
-                            <p>70 grams Anaheim pepper chopped (1 large pepper)</p>
-                        </div>
-                        <div class="single-preparation-step d-flex">
-                            <h4>07.</h4>
-                            <p>25 grams paprika (about 1/4 cup)</p>
-                        </div>
+
                     </div>
 
                     <!-- Ingredients -->
@@ -142,35 +116,12 @@
                     </div>
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <div class="col food-image">
+
+                    <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col">
                         <div class="card h-100">
-                        <img src="https://www.edamam.com/food-img/093/093749f4c93e448119fc81976d2c3067.jpg" class="card-img-top" alt="" width="20px">
+                        <img :src="foodItem.image" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">chicken breast</h5>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="https://www.edamam.com/food-img/694/6943ea510918c6025795e8dc6e6eaaeb.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">coarse salt</h5>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="https://www.edamam.com/food-img/c23/c23e20823b442067307aa436969358f1.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">seasoning</h5>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="https://www.edamam.com/food-img/c6e/c6e5c3bd8d3bc15175d9766971a4d1b2.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">black pepper</h5>
+                            <h5 class="card-title">{{foodItem.food}}</h5>
                         </div>
                         </div>
                     </div>
@@ -186,13 +137,27 @@
 
 <script>
 import router from '../router'
+import axios from 'axios';
 
 export default{
-  data: function() {
-    return {
-      imgRoute: "../assets/img/food.jpg"
-    }
-  },
+	data(){
+		return{
+		recipe: {}
+		}
+	},
+	created() {
+		this.recipeUri = this.$route.query.id
+		axios.get(`https://sanoria-api.herokuapp.com/recipe/${this.recipeUri}`)
+            .then( result => {
+                if(result.status == 200){
+                    let finalData = result.data;
+                    this.recipe = finalData.recipe;
+                }
+                else{
+                    console.log("algo malo pasó :(")
+                }
+            }).catch(e => console.log(e))
+	},
   name: 'Recipe',
   props: {
     msg: String,
@@ -201,7 +166,24 @@ export default{
     navega: function (route){
       router.push(route)
         .catch(() => {})
-    }
+    },
+    getImgUrl(images) { 
+      if(Object.keys(images).includes("LARGE")){
+        return images.LARGE.url+ "";
+      }
+      else if(Object.keys(images).includes("REGULAR")){
+        return images.REGULAR.url;
+      }
+      else if(Object.keys(images).includes("SMALL")){
+        return images.SMALL.url;
+      }
+      else if(Object.keys(images).includes("THUMBNAIL")){
+        return images.THUMBNAIL.url;
+      }
+      else {
+        console.log("entra 5")
+      }
+    },
   }
 }
 </script>

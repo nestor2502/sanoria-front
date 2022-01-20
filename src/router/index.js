@@ -40,7 +40,12 @@ const routes = [
     path: '/recipe',
     name: 'Recipe',
     component: Recipe
-  }
+  },
+  {
+    path: '/search',
+    name: 'Home',
+    component: Home
+  },
 ]
 
 const router = new Router({
