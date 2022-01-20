@@ -28,9 +28,6 @@
 				<button class="btn btn-success" @click="handleSave">
 					Login
 				</button>
-				<button class="btn btn-secondary" @click="handleClose">
-					Close
-				</button>
 			</div>
 		</div>
 	</div>
@@ -38,7 +35,7 @@
 
 <script>
 export default {
-	name: "Modal",
+	name: "Login",
 	data: function (){
 		return{
 			dataObj:{
