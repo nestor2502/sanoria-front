@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center">
         <div class="col-12 col-lg-auto justify-content-start" id="dismiss">
-            <Slide noOverlay width="280"
+            <Slide noOverlay width="280" id="sidebar"
               @openMenu="onOverlay"
               @closeMenu="offOverlay">
                 <a id="profile" class="align-items-center" href="#">
@@ -40,7 +40,7 @@
         <form class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
           <div class="input-group col-md-4">
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-search" type="submit"><i class="fa fa-search"></i></button>
+            <button class="btn btn-search" type="button" @click="findRecipes()"><i class="fa fa-search"></i></button>
           </div>
         </form>
         <div v-if="true" class="d-flex align-items-center">
@@ -56,32 +56,11 @@
     </div>
     <!-- Button trigger modal -->
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Aqui va el contenido
-        <!-- <Login/> -->
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
   </header>
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from 'axios';
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
 
@@ -106,7 +85,12 @@ export default {
       document.getElementById("overlay").style.display = "none";
     },
     findRecipes:function (){
-
+      console.log("entra en esta función")
+      axios.get('https://sanoria-api.herokuapp.com/recipe/search?recipeName=chicken')
+          .then( result => {
+            console.log("result")
+            console.log(result)
+          }).catch(e => console.log(e))
     }
   }
 }
