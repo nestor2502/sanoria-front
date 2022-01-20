@@ -7,6 +7,7 @@ import Registro from '@/components/Registro'
 import PersonInfo from '@/components/PersonInfo'
 import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
+import NotFound  from '@/components/NotFound'
 
 Vue.use(Router);
 
@@ -40,6 +41,10 @@ const routes = [
     path: '/allergies',
     name: 'Allergies',
     component: Allergies
+  },
+  { 
+    path: "*", 
+    component: NotFound 
   }
 ]
 
