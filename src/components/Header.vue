@@ -31,7 +31,7 @@
         </div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0">
           <li>
-            <a class="nav-link navbar-brand" href="#">
+            <a class="nav-link navbar-brand" @click="navega('/')" type="button">
               <span style="color:#acb549">Sano</span>
               <span style="color:#000000">ria</span>
             </a>
@@ -45,7 +45,7 @@
         </form>
         <div v-if="true" class="d-flex align-items-center">
           <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
-          <button type="button" class="btn btn-custom">Sign-up</button>
+          <button type="button" class="btn btn-custom" @click="navega('/signup')">Sign-up</button>
         </div>
         <div v-if="false" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,6 +74,9 @@ export default {
     navega: function (route){
       router.push(route)
         .catch(() => {})
+    },
+    openRegistroPage: function() {
+      router.push({'name':'Registro'});
     },
     onOverlay: function() {
       document.getElementById("overlay").style.display = "block";
