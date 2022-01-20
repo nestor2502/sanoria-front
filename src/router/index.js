@@ -7,6 +7,7 @@ import PersonInfo from '@/components/PersonInfo'
 import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
 import Recipe from  '@/components/Recipe'
+import Search from  '@/components/Search'
 import Index from  '@/components/Index'
 
 Vue.use(Router);
@@ -41,6 +42,11 @@ const routes = [
     path: '/recipe',
     name: 'Recipe',
     component: Recipe
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
   },
   {
     path: '/index',
