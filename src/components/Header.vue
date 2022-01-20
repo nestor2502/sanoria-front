@@ -88,6 +88,8 @@ export default {
       console.log("entra en esta función")
       axios.get('https://sanoria-api.herokuapp.com/recipe/search?recipeName=chicken')
           .then( result => {
+            console.log("result")
+            console.log(result)
           }).catch(e => console.log(e))
     }
   }
