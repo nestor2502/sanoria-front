@@ -22,10 +22,16 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
+body {
+  overflow-x: hidden;
+}
+=======
 body{
   overflow-x: hidden;
 }
 
+>>>>>>> developer
 router-view {
   background-color: lightgrey;
 }
