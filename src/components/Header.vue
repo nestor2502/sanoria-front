@@ -23,7 +23,7 @@
                   <svg width="20" height="20" style="color: white"><use xlink:href="#utensils"/></svg>
                   <span>My scheme</span>
                 </a>
-                <a id="my-tracking" class="align-items-center" href="#">
+                <a id="my-tracking" class="align-items-center" href="/tracking">
                   <i class="far fa-calendar-alt"></i>
                   <span>My tracking</span>
                 </a>

@@ -5,6 +5,7 @@ import Home from  '@/components/Home'
 import Prueba from  '@/components/Prueba'
 import Recipe from  '@/components/Recipe'
 import Login from  '@/components/Login'
+import Tracking from '@/components/Tracking'
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/tracking',
+    name: 'Tracking',
+    component: Tracking
   }
 ]
 
