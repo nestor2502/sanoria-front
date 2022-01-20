@@ -19,7 +19,7 @@
                   <i class="far fa-heart"></i>
                   <span>Favorites</span>
                 </a>
-                <a id="my-scheme" class="align-items-center" href="#">
+                <a id="my-scheme" class="align-items-center" href="/scheme">
                   <svg width="20" height="20" style="color: white"><use xlink:href="#utensils"/></svg>
                   <span>My scheme</span>
                 </a>

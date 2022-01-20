@@ -1,6 +1,8 @@
 <template>
 
 <div>
+    <br>
+    <br>
     <div>
     <!--Nombre esquema-->
         <h1>
