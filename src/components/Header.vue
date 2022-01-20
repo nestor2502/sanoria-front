@@ -43,27 +43,53 @@
             <button class="btn btn-search" type="submit"><i class="fa fa-search"></i></button>
           </div>
         </form>
-        <div v-if="false" class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-custom me-2">Login</button>
+        <div v-if="true" class="d-flex align-items-center">
+          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
           <button type="button" class="btn btn-custom">Sign-up</button>
         </div>
-        <div v-if="true" class="d-flex align-items-center">
+        <div v-if="false" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </div>
     </div>
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Aqui va el contenido
+        <!-- <Login/> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   </header>
 </template>
 
 <script>
+//import axios from 'axios';
 import router from '../router'
 import {Slide} from 'vue-burger-menu'
 
 export default {
   name: 'Header',
-  
+  props: {
+    msg: String,
+  },
   components: {Slide},
   methods: {
     navega: function (route){
@@ -75,121 +101,14 @@ export default {
     },
     offOverlay: function() {
       document.getElementById("overlay").style.display = "none";
+    },
+    findRecipes:function (){
+
     }
   }
 }
 </script>
 
 <style>
-@font-face {
-  font-family: Ananias;
-  src: url(../assets/font-family/Ananias.ttf);
-}
-
-.navbar-brand {
-  font-size: x-large;
-  font-family: Ananias;
-}
-
-header {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-}
-
-a i {
-  color: #fff;
-}
-
-.btn-search{
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-search:hover {
-  color: #abb545;
-  background-color: transparent;
-  border-color: #abb545;
-}
-
-.btn-outline-custom {
-  color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-outline-custom:hover {
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom{
-  color: #fff;
-  background-color: #abb545;
-  border-color: #abb545;
-}
-
-.btn-custom:hover {
-  color: #abb545;
-  background-color: #fff;
-  border-color: #abb545;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
-.bm-burger-button {
-  cursor: pointer;
-  height: 25px;
-  left: 0px;
-  position: relative;
-  top: 0px;
-  width: 30px;
-}
-
-.bm-burger-bars {
-  background-color: #abb545;
-}
-
-.line-style {
-  position: absolute;
-  height: 11%;
-  left: 0;
-  right: 0;
-}
-.cross-style {
-  position: absolute;
-  top: 12px;
-  right: 2px;
-  cursor: pointer;
-}
-.bm-cross {
-  background: #7c746d;
-}
-
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-.bm-menu {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: #f49839; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
-}
-
-.bm-item-list > * > span {
-  margin-left: 10px;
-  font-weight: 700;
-  color: white;
-}
+  @import url(../assets/styles/Header.css);
 </style>
