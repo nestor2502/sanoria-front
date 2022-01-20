@@ -1,12 +1,3 @@
 .card-img-top {
     height: 255px;
 }
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    color: black !important;
-}
