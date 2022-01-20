@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from  '@/components/Home'
 import Prueba from  '@/components/Prueba'
 import Recipe from  '@/components/Recipe'
+import Index from  '@/components/Index'
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/recipe',
     name: 'Recipe',
     component: Recipe
+  },
+  {
+    path: '/index',
+    name: 'Index',
+    component: Index
   }
 ]
 
