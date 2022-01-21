@@ -2,24 +2,54 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from  '@/components/Home'
-import Prueba from  '@/components/Prueba'
+import Signup from '@/components/Signup'
+import PersonInfo from '@/components/PersonInfo'
+import AdicionalInfo from '@/components/Diet'
+import Allergies from '@/components/Allergies'
+import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
 import Login from  '@/components/Login'
 import Tracking from '@/components/Tracking'
+import Search from  '@/components/Search'
+import Index from  '@/components/Index'
 
 Vue.use(Router);
 
 const routes = [
+  {
+    path: '/',
+    name: 'Index',
+    component: Index
+  },
   {
     path: '/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/prueba',
-    name: 'Prueba',
-    component: Prueba
+    path: '/personinfo',
+    name: 'PersonInfo',
+    component: PersonInfo
   },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/diet',
+    name: 'Diet',
+    component: AdicionalInfo
+  },
+  {
+    path: '/allergies',
+    name: 'Allergies',
+    component: Allergies
+  },
+  { 
+    path: "*", 
+    component: NotFound 
+  }, 
   {
     path: '/recipe',
     name: 'Recipe',
@@ -33,7 +63,12 @@ const routes = [
   {
     path: '/tracking',
     name: 'Tracking',
-    component: Tracking
+    component: Tracking,
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
   }
 ]
 
