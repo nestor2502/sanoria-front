@@ -37,7 +37,7 @@
                             <div class="receipe-duration">
                                 <h6>Low Carb</h6>
                                 <h6>Cook: 30 mins</h6>
-                                <h6>Yields: 4 Servings</h6>
+                                <h6>Yields: {{recipe.yield}} Servings</h6>
                             </div>
                         </div>
                     </div>
@@ -60,14 +60,14 @@
                         <div class="single-preparation-step d-flex">
                             <h4>Ingredients</h4>
                         </div>
-                        <div v-for="ingredient in recipe.ingredientLines" :key="ingredient.id" class="single-preparation-step d-flex">
-                            <h4>01.</h4>
+                        <div v-for="(ingredient, index) in recipe.ingredientLines" :key="index" class="single-preparation-step d-flex">
+                            <h4>{{index+1}}.</h4>
                             <p>{{ingredient}}</p>
                         </div>
 
                     </div>
 
-                    <!-- Ingredients -->
+                    <!-- Nutrients -->
                     <div class="col-12 col-lg-4">   
                         <div class="ingredients">
                             <h4>Nutrition Facts</h4>
@@ -75,28 +75,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
+                                    <th scope="col">Nutrient</th>
+                                    <th scope="col">quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Protein</td>
-                                    <td>236 g</td>
-                                    
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Cholesterol </td>
-                                    <td>1283 mg</td>
-                                   
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td >Sodium</td>
-                                    <td>3945 mg</td>
+                                    <tr v-for="(item, name,index2) in recipe.totalNutrients" :key="index2">
+                                        <td>{{item.label}}</td>
+                                        <td>{{item.quantity.toFixed(2)}} {{item.unit}}</td>
                                     </tr>
                                 </tbody>
                                 </table>
@@ -117,7 +103,7 @@
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
 
-                    <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col">
+                    <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col" @click="navega(`/food?id=${getFoodId(foodItem.foodId)}&name=${foodItem.food}`)">
                         <div class="card h-100">
                         <img :src="foodItem.image" class="card-img-top" alt="">
                         <div class="card-body">
@@ -153,6 +139,8 @@ export default{
                 if(result.status == 200){
                     let finalData = result.data;
                     this.recipe = finalData.recipe;
+                    console.log("this.recipe")
+                    console.log(this.recipe)
                 }
                 else{
                     console.log("algo malo pasó :(")
@@ -186,10 +174,22 @@ export default{
       }
     },
     addToSchema(){
+        console.log("se agrega")
+        const food = {
+            "userId": 1,
+            "label": "pollo rostizado",
+            "image": "imageUrl",
+            "recipeUri": "adasdasdasd"
+        }
+        console.log(food)
        //storage.setStorage('userTemp', {test: true});
        //let value = storage.getStorage('userTemp')
        //console.log(value)
        //storage.removeStorage('books')
+    },
+    getFoodId(uriValue){
+      let uri = uriValue.slice(uriValue.indexOf("_")+1)
+      return uri
     }
   }
 }

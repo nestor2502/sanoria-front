@@ -5,7 +5,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcumb-text text-center">
-                        <h2>Nutrition Facts</h2>
+                        <h2>Food</h2>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <img  class="recipe-image" src="../assets/img/rda.jpg" alt="">
+                        <img  class="recipe-image" :src="food.image" alt="">
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <h2>Red Delicious Apple</h2>
+                            <h2>{{food.label}}</h2>
                             <div class="receipe-duration">
                                 <h6>Low Carb</h6>
                             </div>
@@ -108,4 +108,71 @@
 </template>
 
 <script>
+
+import router from '../router'
+import axios from 'axios';
+export default{
+	data(){
+		return{
+		food: {}
+		}
+	},
+	created() {
+		this.foodUri = this.$route.query.name
+		axios.get(`https://sanoria-api.herokuapp.com/food?ingr=${this.foodUri}`)
+            .then( result => {
+                if(result.status == 200){
+                    this.food = result.data.data[0];
+                }
+                else{
+                    console.log("algo malo pasó :(")
+                }
+            }).catch(e => console.log(e))
+	},
+  name: 'Food',
+  props: {
+    msg: String,
+  },
+  methods: {
+    navega: function (route){
+      router.push(route)
+        .catch(() => {})
+    },
+    getImgUrl(images) {
+      if(Object.keys(images).includes("LARGE")){
+        return images.LARGE.url+ "";
+      }
+      else if(Object.keys(images).includes("REGULAR")){
+        return images.REGULAR.url;
+      }
+      else if(Object.keys(images).includes("SMALL")){
+        return images.SMALL.url;
+      }
+      else if(Object.keys(images).includes("THUMBNAIL")){
+        return images.THUMBNAIL.url;
+      }
+      else {
+        return "";
+      }
+    },
+    addToSchema(){
+        console.log("se agrega")
+        const food = {
+            "userId": 1,
+            "label": "pollo rostizado",
+            "image": "imageUrl",
+            "recipeUri": "adasdasdasd"
+        }
+        console.log(food)
+       //storage.setStorage('userTemp', {test: true});
+       //let value = storage.getStorage('userTemp')
+       //console.log(value)
+       //storage.removeStorage('books')
+    },
+    getFoodId(uriValue){
+      let uri = uriValue.slice(uriValue.indexOf("_")+1)
+      return uri
+    }
+  }
+}
 </script>
