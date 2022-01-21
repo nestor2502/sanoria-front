@@ -9,12 +9,12 @@
       <a
         v-on:click="activetab = 2"
         v-bind:class="[activetab === 2 ? 'active' : '']"
-        >Weight</a
+        >Weights</a
       >
       <a
         v-on:click="activetab = 3"
         v-bind:class="[activetab === 3 ? 'active' : '']"
-        >Height</a
+        >Heights</a
       >
     </div>
 
