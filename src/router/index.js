@@ -6,7 +6,12 @@ import Signup from '@/components/Signup'
 import PersonInfo from '@/components/PersonInfo'
 import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
+import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
+import FoodDetail from  '@/components/FoodDetail'
+import Scheme from '@/components/Scheme'
+import Login from  '@/components/Login'
+import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
 import Profile from '@/components/Profile'
@@ -14,6 +19,11 @@ import Profile from '@/components/Profile'
 Vue.use(Router);
 
 const routes = [
+  {
+    path: '/',
+    name: 'Index',
+    component: Index
+  },
   {
     path: '/home',
     name: 'Home',
@@ -39,10 +49,34 @@ const routes = [
     name: 'Allergies',
     component: Allergies
   },
+  { 
+    path: "*", 
+    component: NotFound 
+  }, 
   {
     path: '/recipe',
     name: 'Recipe',
     component: Recipe
+  },
+  {
+    path: '/food-detail',
+    name: 'FoodDetail',
+    component: FoodDetail
+    
+  },
+  {
+    path: '/scheme',
+    name: 'Scheme',
+    component: Scheme
+  },{
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/tracking',
+    name: 'Tracking',
+    component: Tracking,
   },
   {
     path: '/search',

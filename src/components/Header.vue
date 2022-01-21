@@ -19,11 +19,11 @@
                   <i class="far fa-heart"></i>
                   <span>Favorites</span>
                 </a>
-                <a id="my-scheme" class="align-items-center" href="#">
+                <a id="my-scheme" class="align-items-center" href="/scheme">
                   <svg width="20" height="20" style="color: white"><use xlink:href="#utensils"/></svg>
                   <span>My scheme</span>
                 </a>
-                <a id="my-tracking" class="align-items-center" href="#">
+                <a id="my-tracking" class="align-items-center" href="/tracking">
                   <i class="far fa-calendar-alt"></i>
                   <span>My tracking</span>
                 </a>
@@ -39,12 +39,12 @@
         </ul>
         <form class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
           <div class="input-group col-md-4">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-search" type="button" @click="findRecipes()"><i class="fa fa-search"></i></button>
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
+            <button class="btn btn-search" type="button" @click="navega('/search?q='+search)"><i class="fa fa-search"></i></button>
           </div>
         </form>
         <div v-if="true" class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="navega('/login')">Login</button>
           <button type="button" class="btn btn-custom" @click="navega('/signup')">Sign-up</button>
         </div>
         <div v-if="false" class="d-flex align-items-center">
@@ -65,9 +65,17 @@ import router from '../router'
 import {Slide} from 'vue-burger-menu'
 
 export default {
+  created() {
+    //console.log(this.$router.currentRoute.path); // path is /post
+  },
   name: 'Header',
   props: {
     msg: String,
+  },
+  data(){
+    return{
+      search: ''
+    }
   },
   components: {Slide},
   methods: {
