@@ -15,10 +15,6 @@
                   <i class="far fa-user"></i>
                   <span>Profile</span>
                 </a>
-                <a id="favorites" class="align-items-center" href="#">
-                  <i class="far fa-heart"></i>
-                  <span>Favorites</span>
-                </a>
                 <a id="my-scheme" class="align-items-center" href="/scheme">
                   <svg width="20" height="20" style="color: white"><use xlink:href="#utensils"/></svg>
                   <span>My scheme</span>
@@ -44,7 +40,7 @@
           </div>
         </form>
         <div v-if="true" class="d-flex align-items-center">
-          <button type="button" class="btn btn-outline-custom me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="navega('/login')">Login</button>
+          <button type="button" class="btn btn-outline-custom me-2" @click="navega('/login')">Login</button>
           <button type="button" class="btn btn-custom" @click="navega('/signup')">Sign-up</button>
         </div>
         <div v-if="false" class="d-flex align-items-center">

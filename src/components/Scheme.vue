@@ -10,7 +10,7 @@
         </h1>
     </div>
 
-     <div class="row">
+     <div class="row align-items-center">
         <div class="column">
             <div class="nombre-esquema">
                 <p>Type of Schemes</p>
@@ -18,14 +18,14 @@
         </div>
         <div class="column">
             <!--checkbox-->
-            <!--<input  class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+            <input  class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                 <label class="form-check-label" for="flexCheckDefault">
-                  <p>Saved</p>
-                </label>-->
+                  <p>Saves</p>
+                </label>
         </div>
     </div> 
 
-  <div class="album py-5 bg-light">
+  <div class="py-5">
     <div class="container">
 
 
@@ -45,15 +45,13 @@
                     </div>
                 </div>        
             </div>
-        
       </div>
     </div>
   </div>
-
   <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" href="#" aria-label="Previous" style="border: 1px solid #abb545;">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -61,7 +59,7 @@
     <li class="page-item"><a class="page-link" href="#" @click="selectChunk(n)">{{n}}</a></li>
     </div>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="btn page-link" href="#" aria-label="Next" style="border: 1px solid #abb545;">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
