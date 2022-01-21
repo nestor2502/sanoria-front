@@ -8,11 +8,15 @@ import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
 import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
+<<<<<<< HEAD
+import FoodDetail from  '@/components/FoodDetail'
+=======
 import Scheme from '@/components/Scheme'
 import Login from  '@/components/Login'
 import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
+>>>>>>> origin/developer
 
 Vue.use(Router);
 
@@ -55,6 +59,15 @@ const routes = [
     path: '/recipe',
     name: 'Recipe',
     component: Recipe
+<<<<<<< HEAD
+    
+  },
+  {
+    path: '/FoodDetail',
+    name: 'FoodDetail',
+    component: FoodDetail
+    
+=======
   },
   {
     path: '/scheme',
@@ -74,6 +87,7 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
+>>>>>>> origin/developer
   }
 ]
 
