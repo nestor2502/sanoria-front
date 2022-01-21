@@ -2,10 +2,10 @@
 <footer class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-top">
   <div class="nav col-12 col-md-center mb-2 align-items-end justify-content-center mb-md-0"> 
       <div class="socials">
-        <li><a href="https://www.facebook.com/sanoriaApp/" class="nav-link px-2 link-dark"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="https://www.instagram.com/sanoria_oficial/" class="nav-link px-2 link-dark"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="mailto:sanoria.oficial@gmail.com" class="nav-link px-2 link-dark"><i class="fa fa-envelope"></i></a></li>
-        <li><a href="https://twitter.com/SanoriaOficial" class="nav-link px-2 link-dark"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="https://www.facebook.com/sanoriaApp/" target="_blank" class="nav-link px-2 link-dark"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://twitter.com/SanoriaOficial" target="_blank" class="nav-link px-2 link-dark"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="mailto:sanoria.oficial@gmail.com" target="_blank" class="nav-link px-2 link-dark"><i class="fa fa-envelope"></i></a></li>
+        <li><a href="https://www.instagram.com/sanoria_oficial/" target="_blank" class="nav-link px-2 link-dark"><i class="fa fa-instagram"></i></a></li>
       </div>
     <p>copyright &copy; All rights reserved</p>
     <a id="icon-footer" href=""><img src="../assets/img/Sanoria.png" height="45" width="80"></a> 
