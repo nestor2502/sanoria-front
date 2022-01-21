@@ -1,0 +1,29 @@
+.card {
+    border: none;
+}
+.col-sm-2 {
+    text-align: left;
+}
+
+.card-body .row {
+    padding-left: 10px;
+}
+
+#user-password {
+    border: none;
+    background: transparent !important;
+    text-align: center !important;
+}
+.allergies {
+    list-style: none;
+}
+
+hr {
+    width: 90%;
+}
+
+@media screen and (max-width:767px) {
+    hr {
+        width: 100%;
+    }
+}

@@ -14,6 +14,7 @@ import Login from  '@/components/Login'
 import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
+import Profile from '@/components/Profile'
 
 Vue.use(Router);
 
@@ -81,6 +82,11 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
