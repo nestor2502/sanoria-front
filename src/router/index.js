@@ -84,11 +84,6 @@ const routes = [
     component: Search
   },
   {
-    path: '/index',
-    name: 'Index',
-    component: Index
-  },
-  {
     path: '/profile',
     name: 'Profile',
     component: Profile

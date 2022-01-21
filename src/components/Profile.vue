@@ -4,9 +4,9 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
-          <img src="https://ui-avatars.com/api/?name=Juan Lugo&background=f49839&size=128&rounded=true&color=ffffff">
+          <img :src="'https://ui-avatars.com/api/?name='+user.name+'&background=f49839&size=128&rounded=true&color=ffffff'">
           <div class="mt-3">
-            <h4>Juan García Lugo</h4>
+            <h4>{{user.name}}</h4>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
             <h6 class="mb-0">Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            Juan García Lugo
+            {{user.name}}
           </div>
         </div>
         <hr>
@@ -29,7 +29,7 @@
             <h6 class="mb-0">Gender</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            Male
+            {{user.gender}}
           </div>
         </div>
         <hr>
@@ -38,16 +38,16 @@
             <h6 class="mb-0">Birthday</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            05/01/2000
+            {{user.birth}}
           </div>
         </div>
 		<hr>
 		<div class="row">
           <div class="col-sm-2">
-            <h6 class="mb-0">height</h6>
+            <h6 class="mb-0">Height</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            168 cm
+            {{user.height}} cm
           </div>
         </div>
 		<hr>
@@ -56,7 +56,7 @@
             <h6 class="mb-0">Weight</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            65 kg
+            {{user.weight}} kg
           </div>
         </div>
         <hr>
@@ -65,18 +65,7 @@
             <h6 class="mb-0">Email</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            juanlugo@ciencias.unam.mx
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-2">
-            <h6 class="mb-0">Password</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input id="user-password" v-if="showPassword" type="text" class="input text-secondary" v-model="password" disabled/>
-            <input id="user-password" v-else type="password" class="input text-secondary" v-model="password" disabled>
-			<i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }" @click="toggleShow"></i>
+            {{user.email}}
           </div>
         </div>
 		<hr>
@@ -85,14 +74,9 @@
             <h6 class="mb-0">Allergies</h6>
           </div>
           <div class="col-sm-9 text-secondary allergies">
-			<li>Dairy</li>
-			<li>Egg</li>
-			<li>Fish</li>
-			<li>Gluten</li>
-			<li>Wheat</li>
-			<li>Mustard</li>
-			<li>Peanut</li>
-			<li>Shellfish</li>
+            <li v-for="allergie in user.allergies" :key="allergie.id">
+              {{allergie.name}}
+            </li>
           </div>
         </div>
         <hr>
@@ -104,14 +88,20 @@
 
 <script>
 import router from '../router'
+import storage from "../storage"
 
 export default {
   name: 'Profile',
   props: {
     msg: String
   },
+  created() {
+    this.user = storage.getStorage('user')
+    console.log(this.user)
+  },
   data() {
     return {
+      user: {},
       showPassword: false,
       password: "algo"
     };
