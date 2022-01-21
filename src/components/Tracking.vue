@@ -4,17 +4,17 @@
       <a
         v-on:click="activetab = 1"
         v-bind:class="[activetab === 1 ? 'active' : '']"
-        >Malestares</a
+        >Aches</a
       >
       <a
         v-on:click="activetab = 2"
         v-bind:class="[activetab === 2 ? 'active' : '']"
-        >Peso</a
+        >Weight</a
       >
       <a
         v-on:click="activetab = 3"
         v-bind:class="[activetab === 3 ? 'active' : '']"
-        >Altura</a
+        >Height</a
       >
     </div>
 
@@ -23,24 +23,50 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Fecha</th>
+              <th scope="col">Ache</th>
+              <th scope="col">Date</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in malestares" :key="item.id">
-              <td>{{ item.malestar }}</td>
+              <td>{{ item.ache }}</td>
               <td>{{ item.date }}</td>
             </tr>
           </tbody>
         </table>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoMalestar">
+          New
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="nuevoMalestar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Ache</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input v-model="malestar" type="text" id="malestar" class="form-control" aria-describedby="nameBlock">
+                <div id="nameBlock" class="form-text">
+                  Enter ache
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" @click="nuevoMalestar(malestar)">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div v-if="activetab === 2" class="tabcontent">
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Peso (kg)</th>
-              <th scope="col">Fecha</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -55,8 +81,8 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Altura (m)</th>
-              <th scope="col">Fecha</th>
+              <th scope="col">Height</th>
+              <th scope="col">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -82,11 +108,13 @@ export default {
       weights: [],
       malestares: [],
       activetab: 1,
+      userId: 1,
+      malestar: ''
     };
   },
   beforeMount() {
     //const userId = JSON.parse(Storage.getItem("userInfo")).userId
-    const userId = 1
+    const userId = this.userId
     this.getWeightLog(userId)
     this.getHeightLog(userId)
     this.getMalestaresLog(userId)
@@ -114,7 +142,7 @@ export default {
 			}).catch((err) => console.error(err))
 		},
     getMalestaresLog(userId){
-      axios.get('https://sanoria-api.herokuapp.com/user/malestar-log/' + userId)
+      axios.get('https://sanoria-api.herokuapp.com/user/' + userId + '/ache')
       .then((res) => {
 				if (res.status === 200) {
           this.malestares = res.data
@@ -122,12 +150,24 @@ export default {
 					console.log(res)
 				}
 			}).catch((err) => console.error(err))
+    },
+    nuevoMalestar(){
+      console.log(this.malestar)
+      axios.post('https://sanoria-api.herokuapp.com/user/' + this.userId + '/ache', {
+        ache: this.malestar
+      })
+      .then((res) => {
+        console.log(res.status)
+        this.malestar = ''
+        this.showModal = false
+      })
+      .catch((err) => console.error(err))
     }
   },
 };
 </script>
 
-<style>
+<style >
 /* RESET */
 * {
   box-sizing: border-box;
