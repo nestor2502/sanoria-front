@@ -58,7 +58,7 @@ const routes = [
     component: Recipe
   },
   {
-    path: '/FoodDetail',
+    path: '/food-detail',
     name: 'FoodDetail',
     component: FoodDetail
     
