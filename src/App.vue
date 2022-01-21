@@ -2,7 +2,7 @@
   <div class="wrapper" id="app">
     <!--img alt="Vue logo" src="./assets/logo.png"-->
     <Header/>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
     <Footer/>
   </div>
 </template>

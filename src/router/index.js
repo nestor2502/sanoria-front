@@ -8,7 +8,7 @@ import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
 import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
-import FoodDetail from  '@/components/FoodDetail'
+import Food from  '@/components/Food'
 import Scheme from '@/components/Scheme'
 import Login from  '@/components/Login'
 import Tracking from '@/components/Tracking'
@@ -58,9 +58,9 @@ const routes = [
     component: Recipe
   },
   {
-    path: '/food-detail',
-    name: 'FoodDetail',
-    component: FoodDetail
+    path: '/food',
+    name: 'Food',
+    component: Food
     
   },
   {
