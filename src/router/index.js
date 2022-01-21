@@ -8,6 +8,7 @@ import AdicionalInfo from '@/components/Diet'
 import Allergies from '@/components/Allergies'
 import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
+import Scheme from '@/components/Scheme'
 import Login from  '@/components/Login'
 import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
@@ -56,6 +57,10 @@ const routes = [
     component: Recipe
   },
   {
+    path: '/scheme',
+    name: 'Scheme',
+    component: Scheme
+  },{
     path: '/login',
     name: 'Login',
     component: Login
