@@ -44,653 +44,150 @@
         <span class="visually-hidden">Next</span>
       </button>
   </div>
-  <section>
-    <div class="section-header"><h2>High in fiber</h2></div>
-    <div id="recomendations-1" class="carousel slide recomendations" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
+  <section v-for="(recomedation, i) in recomedations" :key="i">
+    <div class="section-header">
+      <h2 style="text-transform: capitalize;">{{finalcategories[i].replaceAll("-", " ")}}</h2>
+      </div>
+    <div v-bind:id="'recomendations-'+i" class="carousel slide recomendations" data-bs-ride="carousel">
+        <div class="carousel-inner" >
+          <div v-for="(recipes, index) in recomedation" :key="index" class="carousel-item" v-bind:class="{'active' : index == 0}">
             <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
+              <div v-for="recipe in recipes" :key="recipe.id" class="col" @click="navega('recipe?id='+ getRecipeId(recipe.uri))">
                 <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
+                  <img :src="recipe.image" class="bd-placeholder-img card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{recipe.label}}</h5>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#recomendations-1" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" v-bind:data-bs-target="'#recomendations-'+i" data-bs-slide="prev">
           <svg width="50" height="50" class="right-icon" style="background-color= #fff"><use xlink:href="#left-arrow"/></svg>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#recomendations-1" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" v-bind:data-bs-target="'#recomendations-'+i" data-bs-slide="next">
           <svg width="50" height="50" class="right-icon"><use xlink:href="#right-arrow"/></svg>
           <span class="visually-hidden">Next</span>
         </button>
     </div>
   </section>
-  <section>
-    <div class="section-header"><h2>High in fiber</h2></div>
-    <div id="recomendations-2" class="carousel slide recomendations" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#recomendations-2" data-bs-slide="prev">
-          <svg width="50" height="50" class="right-icon" style="background-color= #fff"><use xlink:href="#left-arrow"/></svg>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#recomendations-2" data-bs-slide="next">
-          <svg width="50" height="50" class="right-icon"><use xlink:href="#right-arrow"/></svg>
-          <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-  </section>
-  <section>
-    <div class="section-header"><h2>High in fiber</h2></div>
-    <div id="recomendations-3" class="carousel slide recomendations" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#recomendations-3" data-bs-slide="prev">
-          <svg width="50" height="50" class="right-icon" style="background-color= #fff"><use xlink:href="#left-arrow"/></svg>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#recomendations-3" data-bs-slide="next">
-          <svg width="50" height="50" class="right-icon"><use xlink:href="#right-arrow"/></svg>
-          <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-  </section>
-  <section>
-    <div class="section-header"><h2>High in fiber</h2></div>
-    <div id="recomendations-4" class="carousel slide recomendations" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/food.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/bg5.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img src="../assets/img/huevos.jpg" class="bd-placeholder-img card-img-top" alt="">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#recomendations-4" data-bs-slide="prev">
-          <svg width="50" height="50" class="right-icon" style="background-color= #fff"><use xlink:href="#left-arrow"/></svg>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#recomendations-4" data-bs-slide="next">
-          <svg width="50" height="50" class="right-icon"><use xlink:href="#right-arrow"/></svg>
-          <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-  </section>
-</div>
+  </div>
 </template>
 
 <script>
 import router from '../router'
+import axios from 'axios';
 
 export default{
   name: 'Index',
   props: {
     msg: String,
   },
+  data() {
+    return {
+      categories : {
+        "schema": ["balanced", "high-fiber", "high-protein", "low-carb", "low-fat", "low-sodium"], 
+        "health": ["alcohol-cocktail", "alcohol-free", "celery-free", "crustacean-free", "dairy-free", "DASH", 
+                      "egg-free", "fish-free", "fodmap-free", "gluten-free", "immuno-supportive", "keto-friendly",
+                      "kidney-friendly", "kosher", "low-fat-abs", "low-potassium", "low-sugar", "lupine-free",
+                      "Mediterranean", "mollusk-free", "mustard-free", "no-oil-added", "paleo", "peanut-free", "pescatarian",
+                      "pork-free", "red-meat-free", "sesame-free", "shellfish-free", "soy-free", "sugar-conscious",
+                      "sulfite-free", "tree-nut-free", "vegan", "vegetarian", "wheat-free"], 
+        "mealType": ["Breakfast", "Dinner", "Lunch", "Snack", "Teatime"]
+      },
+      foods : ["chicken", "potato", "meat", "meat balls", "spaghetti", "salad"],
+      recomedations : [],
+      finalcategories: []
+    }
+  },
+  created() {
+    for(let i = 0; i < 4; i++) {
+      let category
+      switch(Math.floor(Math.random() * 3)) {
+        case 0:
+          category = "schema"
+          break
+        case 1:
+          category = "health"
+          break
+        case 2:
+          category = "mealType"
+          break
+      }
+      let food = this.foods[(Math.floor(Math.random() * this.foods.length))]
+      let type = Math.floor(Math.random() * this.categories[category].length)
+      this.finalcategories.push(this.categories[category][type])
+      axios.get(`https://sanoria-api.herokuapp.com/recipe/search?recipeName=${food}&${category}=${this.categories[category][type]}&random=true`)
+            .then(result => {
+              if(result.status == 200){
+                let data = result.data.data;
+                data.forEach(element => {
+                  element.image = this.getImgUrl(element.image)
+                });
+                this.recomedations.push(this.chunk(data, 5, true))
+              }
+              else{
+                console.log("algo malo pasó :(")
+              }
+            }).catch(e => console.log(e))
+    }
+  },
   methods: {
     navega: function (route){
       router.push(route)
         .catch(() => {})
+    },
+    getImgUrl(images) { 
+      if(Object.keys(images).includes("LARGE")){
+        return images.LARGE.url+ "";
+      }
+      else if(Object.keys(images).includes("REGULAR")){
+        return images.REGULAR.url;
+      }
+      else if(Object.keys(images).includes("SMALL")){
+        return images.SMALL.url;
+      }
+      else if(Object.keys(images).includes("THUMBNAIL")){
+        return images.THUMBNAIL.url;
+      }
+      else {
+        console.log("entra 5")
+      }
+    },
+    chunk(a, n, balanced) {
+      if (n < 2)
+          return [a];
+      var len = a.length,
+              out = [],
+              i = 0,
+              size;
+      if (len % n === 0) {
+        size = Math.floor(len / n);
+        while (i < len) {
+            out.push(a.slice(i, i += size));
+        }
+      } else if (balanced) {
+        while (i < len) {
+            size = Math.ceil((len - i) / n--);
+            out.push(a.slice(i, i += size));
+        }
+      }
+      else {
+        n--;
+        size = Math.floor(len / n);
+        if (len % size === 0)
+            size--;
+        while (i < size * n) {
+            out.push(a.slice(i, i += size));
+        }
+        out.push(a.slice(size * n));
+      }
+      return out;
+    },
+    getRecipeId(uriValue){
+      let uri = uriValue.slice(uriValue.indexOf("_")+1)
+      return uri
     }
   }
 }

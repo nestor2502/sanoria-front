@@ -45,7 +45,7 @@
                     <div class="col-12 col-md-4">
                         <div class="receipe-ratings text-right my-5">
                             
-                            <a href="#" class="btn delicious-btn">
+                            <a class="btn delicious-btn" @click="addToSchema()">
                                <i class="fas fa-plus"></i>
                                 Add to schema
                             </a>
@@ -138,6 +138,7 @@
 <script>
 import router from '../router'
 import axios from 'axios';
+//import storage from "../storage"
 
 export default{
 	data(){
@@ -167,7 +168,7 @@ export default{
       router.push(route)
         .catch(() => {})
     },
-    getImgUrl(images) { 
+    getImgUrl(images) {
       if(Object.keys(images).includes("LARGE")){
         return images.LARGE.url+ "";
       }
@@ -181,9 +182,15 @@ export default{
         return images.THUMBNAIL.url;
       }
       else {
-        console.log("entra 5")
+        return "";
       }
     },
+    addToSchema(){
+       //storage.setStorage('userTemp', {test: true});
+       //let value = storage.getStorage('userTemp')
+       //console.log(value)
+       //storage.removeStorage('books')
+    }
   }
 }
 </script>

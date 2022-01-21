@@ -9,7 +9,7 @@
   export default {
       methods: {
         goLogin: function() {
-          router.push('/ui/login').catch(()=>{});
+          router.push('/').catch(()=>{});
         }
       }
   }
