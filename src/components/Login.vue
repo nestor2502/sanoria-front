@@ -39,7 +39,7 @@ import axios from "axios"
 export default {
 	name: "Login",
 	data: function (){
-		return{
+		return {
 			dataObj:{
 				email: '',
 				password:''
