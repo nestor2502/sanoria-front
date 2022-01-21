@@ -9,6 +9,7 @@ import Allergies from '@/components/Allergies'
 import Recipe from  '@/components/Recipe'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
+import Profile from '@/components/Profile'
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/index',
     name: 'Index',
     component: Index
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
