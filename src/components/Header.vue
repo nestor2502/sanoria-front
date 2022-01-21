@@ -46,7 +46,7 @@
             <button class="btn btn-search" type="button" @click="navega('/search?q='+search)"><i class="fa fa-search"></i></button>
           </div>
         </form>
-        <div v-if="false" class="d-flex align-items-center">
+        <div v-if="logged" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
@@ -70,7 +70,11 @@ import storage from "../storage"
 
 export default {
   created() {
-    this.user = storage.getStorage('user')
+    //console.log(this.$router.currentRoute.path); // path is /post
+    const user = storage.getStorage('user')
+    console.log("reload header")
+    console.log(user)
+    this.logged = user != null;
   },
   name: 'Header',
   props: {
@@ -79,7 +83,7 @@ export default {
   data(){
     return{
       search: '',
-      user: null,
+      logged: false
     }
   },
   components: {Slide},

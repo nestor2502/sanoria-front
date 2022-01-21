@@ -52,6 +52,7 @@ export default {
 				if (res.status === 201) {
 					console.log(res.data) //aki esta el token
 					storage.setStorage('user', res.data);
+          this.$forceUpdate();
 					this.navega('/')
 				} else {
 					console.log(res)
