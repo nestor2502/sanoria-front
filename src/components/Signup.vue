@@ -6,54 +6,44 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Sign up</h2>
-                    <form method="POST">
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Name" name="name">
+                    <!--form method="POST" id="form" v-on:submit.prevent="procesar()"-->
+                    <form method="POST" id="form" >
+                        <div class="input-group" id="app">
+                            <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username">
+                            
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-2 js-datepicker" type="text" placeholder="E-mail" name="birthday">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                  <input @keypress="isNumber($event)" v-model="input_value" placeholder="DD/MM/YYYY" type="text" maxlength="10" autofocus="autofocus">
+                                    <!--input @keypress="isNumber($event)" class="input--style-2 js-datepicker" placeholder="__/__/____" type="email" name="age" maxlength="8" v-model="age"-->
                                 </div>
                             </div>
-                            <!--div class="col-2">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="gender">
-                                            <option disabled="disabled" selected="selected">Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div-->
                         </div>
-                        <!--div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="class">
-                                    <option disabled="disabled" selected="selected">Class</option>
-                                    <option>Class 1</option>
-                                    <option>Class 2</option>
-                                    <option>Class 3</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div-->
+                      
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-2" type="text" placeholder="Registration Code" name="res_code">
+                                    <input class="input--style-2 js-datepicker" type="email"  placeholder="E-mail" name="email" v-model="email">
                                 </div>
                             </div>
                         </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit" @click="openPersonInfo">Next
-                              <i class="fas fas-arrow-right"> </i>
-                            </button>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-2" type="password" placeholder="******" name="password" v-model="password">
+                                    
+                                </div>
+                            </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col text-center" >
+                              <!--button class="btn btn--radius btn--green" @click="openPersonInfo">Next </button-->
+                              <button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button>
+                            </div>
+                       </div>
+                        
+                        <!--input type="submit" value="Next" title="Next" class="btn btn--radius btn--green" @click="openPersonInfo"/-->
                     </form>
                 </div>
             </div>
@@ -64,23 +54,45 @@
 
 <script scoped>
 
+  //import PersonInfo from '../components/PersonInfo';
   import router from '../router';
+  
     export default {
+      components:{
+
+      },
         data() {
             return {
-              contacto: {
-                nombre:'',
-                correo:'',
-
-              }
+              
+                username:'',
+                email:'',
+                password:'',
+                age: '',
+              
+              input_value: '',
             }
         },
-        methods: {
+        
+        methods: { 
+          isNumber: function(evt) {
+
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                evt.preventDefault();
+              } else {
+                var v = this.input_value;
+                     if (v.match(/^\d{2}$/) !== null) {
+                this.input_value = v + '/';
+                      } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                          this.input_value = v + '/';
+                     }
+              }
+          },
           openPersonInfo: function() {
             router.push({'name':'PersonInfo'})
-          }
-            
-        }
+          },
+        },
     }
 </script>
 
@@ -568,6 +580,9 @@ input {
   display: table-cell;
   padding: 80px 90px;
   padding-bottom: 88px;
+}
+.notValid {
+  color:rgb(235, 74, 74);
 }
 
 @media (max-width: 767px) {

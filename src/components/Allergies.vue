@@ -9,69 +9,63 @@
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
-                                  <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Dairy-free
-                                    </label>
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Egg-freew</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Egg-free
-                                    </label>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Gluten-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        Fish-free
-                                    </label>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Peanut-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Gluten-free
-                                    </label>
-                                </div>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Mustard-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                             </div>
-                         </div>   
+                           
+                        </div>   
                          <div class="row row-space">
                             <div class="col-2">
-                                  <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Wheat-free
-                                    </label>
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">fish-free</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        Mustard-free
-                                    </label>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">dairy-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Peanut-free
-                                    </label>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Tree-Nut-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">  
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     <label class="form-check-label" for="flexCheckDefault">
-                                        &nbsp;&nbsp;Shellfish-free
-                                    </label>
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Shellfish-free</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">  
                                 </div>
                             </div>
                             
                         </div>
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="submit" >SIGN UP
-                              <i class="fas fas-arrow-right"> </i>
+                            <button class="btn btn--radius btn--green" type="submit" @click="opneSignUp">SIGN UP
+                              
                             </button>
+                        </div>
                         </div>
 
                     </form>
@@ -97,8 +91,8 @@
             }
         },
         methods: {
-            openA: function() {
-                router.push({'name':'AdicionalInfo'})
+            opneSignUp: function() {
+                router.push({'name':'Signup'})
             }
                     
         }
@@ -606,12 +600,19 @@ input {
     display: block;
     padding: 60px 50px;
   }
+  
+}
   /* check-box*/
   .form-check-input {
-    margin-left: 10px;
-    padding-bottom: 1rem;
-    margin-top: 0em !important;
+    margin-left: 5px;
+    background-color: gainsboro !important;
+    border-color: gainsboro!important;
+    
 }
+.form-check-input:checked {
+    background-color: rgb(101, 122, 68)!important;
+    border-color: rgb(101, 122, 68)!important;
+
 }
 
 .checkbox-wrap {
@@ -642,7 +643,11 @@ input {
     left: 0;
 }
 .checkbox-primary {
-    color: #0075f6;
+    color: #f49839;
+}
+.checkbxinput {
+  color: green;
+  background-color: green;
 }
 
 

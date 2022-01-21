@@ -17,6 +17,7 @@ import Index from  '@/components/Index'
 
 Vue.use(Router);
 
+
 const routes = [
   {
     path: '/',

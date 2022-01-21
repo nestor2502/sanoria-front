@@ -8,31 +8,14 @@
                     <h2 class="title">Personal Info</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Genero" name="name">
+                            <input class="input--style-2" type="text" placeholder="Gender(Male or Female)" name="gender">
                         </div>
-
-                            <!--div class="col-2">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="gender">
-                                            <option disabled="disabled" selected="selected">Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div-->
-                     
+     
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Edad" name="edad">
+                            <input class="input--style-2" type="number" placeholder="Weight in Kg" name="weight">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Peso" name="peso">
-                        </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Estatura" name="estatura">
+                            <input class="input--style-2" type="number" placeholder="Height" name="height">
                         </div>
                         
                 <!--div class="form-group">
@@ -50,38 +33,30 @@
                             </div>
                         </div-->
                         <div class="p-t-30">
+                          <!--button > v-bind=""</button-->
+                          <!--children :ValorRecibido="NumeroAenviar"  @click="openAdicionalInfo">Next -->
                             <button class="btn btn--radius btn--green" type="submit" @click="openAdicionalInfo">Next
                               <i class="fas fas-arrow-right"> </i>
-                            </button>
+                            </button >
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Jquery JS-->
-    <!--script src="vendor/jquery/jquery.min.js"></script>
-    < Vendor JS-->
-    <!--script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-    <Main JS-->
-    <!--script src="js/global.js"></script-->
-
 </template>
 
 <script>
+ 
 
   import router from '../router';
     export default {
-data() {
+      data() {
         return {
-        checked1: false,
-        checked2: false
-      }
-    },
+          checked1: false,
+          checked2: false
+        }
+      },
         methods: {
           openAdicionalInfo: function() {
             router.push({'name':'Diet'})
