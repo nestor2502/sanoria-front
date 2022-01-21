@@ -152,14 +152,13 @@ export default {
 			}).catch((err) => console.error(err))
     },
     nuevoMalestar(){
-      console.log(this.malestar)
       axios.post('https://sanoria-api.herokuapp.com/user/' + this.userId + '/ache', {
         ache: this.malestar
       })
-      .then((res) => {
-        console.log(res.status)
+      .then(() => {
         this.malestar = ''
         this.showModal = false
+        this.getMalestaresLog(this.userId)
       })
       .catch((err) => console.error(err))
     }
