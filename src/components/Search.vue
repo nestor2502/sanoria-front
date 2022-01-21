@@ -53,7 +53,7 @@ export default {
       router.push(route)
         .catch(() => {})
     },
-        getImgUrl(images) { 
+      getImgUrl(images) { 
       if(Object.keys(images).includes("LARGE")){
         return images.LARGE.url+ "";
       }
