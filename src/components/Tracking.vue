@@ -127,14 +127,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* RESET */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
+a {
+  text-decoration: none;
+  color: #f49839;
+}
 .container {
   max-width: 620px;
   min-width: 420px;
