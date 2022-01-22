@@ -35,9 +35,7 @@
                         <div class="receipe-headline my-5">
                             <h2>{{recipe.label}}</h2>
                             <div class="receipe-duration">
-                                <h6>Low Carb</h6>
-                                <h6>Cook: 30 mins</h6>
-                                <h6>Yields: {{recipe.yield}} Servings</h6>
+                                <h6 v-for="hLabel in healthLabels" :key= "hLabel.id">&nbsp;{{hLabel}}</h6>
                             </div>
                         </div>
                     </div>
@@ -54,25 +52,13 @@
                 </div>
 
                 <div class="row">
-                
-                    <div class="col-12 col-lg-8">
-                        <!-- Single Preparation Step -->
-                        <div class="single-preparation-step d-flex">
-                            <h4>Ingredients</h4>
-                        </div>
-                        <div v-for="(ingredient, index) in recipe.ingredientLines" :key="index" class="single-preparation-step d-flex">
-                            <h4>{{index+1}}.</h4>
-                            <p>{{ingredient}}</p>
-                        </div>
 
-                    </div>
-
-                    <!-- Nutrients -->
-                    <div class="col-12 col-lg-4">   
+                                        <!-- Nutrients -->
+                    <div class="col-12 col-lg-8 nutriment-cards">   
                         <div class="ingredients">
                             <h4>Nutrition Facts</h4>
 
-                            <table class="table">
+                            <!--table class="table">
                                 <thead>
                                     <tr>
                                     <th scope="col">Nutrient</th>
@@ -85,12 +71,75 @@
                                         <td>{{item.quantity.toFixed(2)}} {{item.unit}}</td>
                                     </tr>
                                 </tbody>
-                                </table>
+                                </table-->
+                                <div class="row row-cols-1 row-cols-md-3 g-3">
+                                    <div class="col food-image">
+                                        <div class="card h-100">
+                                        <img  src="../assets/img/kcal.jpg" class="card-img-top" alt="" width="20px">
+                                        <div class="card-body">
+                                            <h3><span>52 Kcal</span></h3>
+                                            <h5 class="card-title">Calories</h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="../assets/img/fat.jpg" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h3><span class="counter">0 g.</span></h3>
+                                            <h5 class="card-title">Fat</h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="../assets/img/carbs.jpg" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h3><span class="counter">14 g.</span></h3>
+                                            <h5 class="card-title">Carbohydrates</h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="../assets/img/sugar.jpg" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h3><span class="counter">16 g.</span></h3>
+                                            <h5 class="card-title">Sugars</h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card h-100">
+                                        <img src="../assets/img/protein.jpg" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                            <h3><span class="counter">0.4 g.</span></h3>
+                                            <h5 class="card-title">Protein</h5>
+                                        </div>
+                                        </div>
+                                    </div>
+                </div>
                         </div>
                     </div>
+                
+                    <div class="col-12 col-lg-4">
+                        <!-- Single Preparation Step -->
+                        <div class="single-preparation-step d-flex">
+                            <h4>Ingredients</h4>
+                        </div>
+                        <div v-for="(ingredient, index) in recipe.ingredientLines" :key="index" class="single-preparation-step d-flex">
+                            <h4>{{index+1}}.</h4>
+                            <p>{{ingredient}}</p>
+                        </div>
+
+                    </div>
+
+   
                 </div>
                 <br>
                 <br>
+
+
 
                 <div class="row">
                     <div class="col-12">
@@ -130,7 +179,8 @@ export default{
 	data(){
 		return{
 		recipe: {},
-        user: {}
+        user: {},
+        healthLabels: []
 		}
 	},
 	created() {
@@ -141,6 +191,9 @@ export default{
                 if(result.status == 200){
                     let finalData = result.data;
                     this.recipe = finalData.recipe;
+                    this.recipe.healthLabels.forEach(hLabel => {
+                        this.healthLabels.push(hLabel.replace("-", " "))
+                    });
                 }
                 else{
                     console.log("algo malo pasó :(")

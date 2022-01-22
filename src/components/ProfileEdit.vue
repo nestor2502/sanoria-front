@@ -177,7 +177,6 @@ export default {
             .then((res) => {
 				if (res.status === 200) {
           storage.setStorage('user', res.data)
-					console.log(res.data)
           this.navega("/profile")
 				} else {
 					console.log("hubo un error")
