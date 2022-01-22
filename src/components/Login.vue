@@ -50,7 +50,6 @@ export default {
 				password: this.dataObj.password
 			}).then((res) => {
 				if (res.status === 201) {
-					console.log(res.data) //aki esta el token
 					storage.setStorage('user', res.data);
           this.$forceUpdate();
 					this.navega('/')

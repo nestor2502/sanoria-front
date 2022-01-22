@@ -29,6 +29,11 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    component: Index
+  },
+  {
+    path: '/home',
+    name: 'Home',
     component: Home
   },
   {
@@ -96,7 +101,10 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
@@ -108,7 +116,6 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const authenticatedUser = storage.getStorage('user');
-  //storage.removeStorage('user')
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     if (requiresAuth && ! authenticatedUser) next('login')
     else next();
