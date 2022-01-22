@@ -38,8 +38,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <!--button class="btn btn--radius btn--green" @click="openPersonInfo">Next </button-->
-                              <button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button>
+                              <button class="btn btn--radius btn--green" @click="openPersonInfo">Next </button>
+                              <!--button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button-->
                             </div>
                        </div>
                         
