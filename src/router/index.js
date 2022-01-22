@@ -29,11 +29,6 @@ const routes = [
     component: Index
   },
   {
-    path: '/personinfo',
-    name: 'PersonInfo',
-    component: PersonInfo,
-  },
-  {
     path: '/signup',
     name: 'Signup',
     component: Signup
