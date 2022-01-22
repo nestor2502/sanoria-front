@@ -31,7 +31,7 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div v-for="post in chunk" :key="post.id">
-                <div class="col" @click="navega(`/food?id=${getItemId(post.recipeUri)}&name=${post.label}`)">
+                <div class="col" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)">
                     <div class="card shadow-sm">
                         <img :src="post.image">
                             <div class="card-body">
