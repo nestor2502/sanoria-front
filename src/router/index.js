@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import storage from "../storage"
 
-import Home from  '@/components/Home'
 import Signup from '@/components/Signup'
 import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
@@ -14,7 +13,6 @@ import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
 import Profile from '@/components/Profile'
-import ProfileEdit from '@/components/ProfileEdit'
 
 Vue.use(Router);
 
@@ -31,9 +29,9 @@ const routes = [
     component: Index
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/personinfo',
+    name: 'PersonInfo',
+    component: PersonInfo,
   },
   {
     path: '/signup',
@@ -89,11 +87,6 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  },
-  {
-    path: '/profile-edit',
-    name: 'ProfileEdit',
-    component: ProfileEdit
   }
 ]
 
