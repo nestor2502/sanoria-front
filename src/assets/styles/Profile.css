@@ -1,11 +1,15 @@
-.card {
+#profile {
+    padding-top: 2.5rem;
+}
+
+#profile .card {
     border: none;
 }
-.col-sm-2 {
+#profile .col-sm-2 {
     text-align: left;
 }
 
-.card-body .row {
+#profile .card-body .row {
     padding-left: 10px;
 }
 
@@ -21,7 +25,18 @@
 hr {
     width: 90%;
 }
+.btn-update {
+  font-size: 18px;
+  color: #f49839;
+  border: 1px solid #f49839;
+}
 
+.btn-update:hover {
+  color: #fff;
+  background-color: #f49839;
+}
+
+  
 @media screen and (max-width:767px) {
     hr {
         width: 100%;
