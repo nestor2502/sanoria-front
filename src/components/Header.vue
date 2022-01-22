@@ -50,7 +50,7 @@
         </form>
         <div v-if="isLogged" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img :src="'https://ui-avatars.com/api/?name='+user.name+'&background=f49839&size=128&rounded=true&color=ffffff'" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
         <div v-if="!isLogged && !isRegister" class="d-flex align-items-center">
@@ -73,6 +73,7 @@ import storage from "../storage"
 export default {
   created() {
     this.isRegister = (this.$router.currentRoute.path.includes("/login") || this.$router.currentRoute.path.includes("/signup"))
+    this.user = storage.getStorage('user')
   },
   name: 'Header',
   props: {
@@ -82,6 +83,7 @@ export default {
     return{
       search: '',
       isRegister: false,
+      user: null,
       get isLogged() {
         return storage.getStorage('user') != null;
       },
