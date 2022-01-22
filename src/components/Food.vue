@@ -40,15 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <div class="receipe-ratings text-right my-5">
-                            
-                            <a href="#" class="btn delicious-btn">
-                               <i class="fas fa-plus"></i>
-                                Add to schema
-                            </a>
-                        </div>
-                    </div>
+                    
                 </div>
                   
                 <div class="row row-cols-1 row-cols-md-5 g-3">
@@ -119,6 +111,7 @@ export default{
 	},
 	created() {
 		this.foodUri = this.$route.query.name
+        console.log(this.foodUri)
 		axios.get(`https://sanoria-api.herokuapp.com/food?ingr=${this.foodUri}`)
             .then( result => {
                 if(result.status == 200){

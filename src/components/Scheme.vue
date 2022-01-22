@@ -31,7 +31,7 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div v-for="post in chunk" :key="post.id">
-                <div class="col">
+                <div class="col" @click="navega(`/food?id=${getItemId(post.recipeUri)}&name=${post.label}`)">
                     <div class="card shadow-sm">
                         <img :src="post.image">
                             <div class="card-body">
@@ -73,6 +73,7 @@
 
 <script>
 import axios from 'axios';
+import router from '../router'
 
 export default {
   data() {
@@ -84,6 +85,14 @@ export default {
   },
 
   methods: {
+    navega(route){
+      router.push(route)
+        .catch(() => {})
+    },
+    getItemId(uriValue){
+      let uri = uriValue.slice(uriValue.indexOf("_")+1)
+      return uri
+    },
     async getData() {
       try {
         let response = await fetch("https://sanoria-api.herokuapp.com/recipe/schema/1");
@@ -128,6 +137,7 @@ export default {
   created() {
     this.getData();
   },
+
 };
 
 </script>
