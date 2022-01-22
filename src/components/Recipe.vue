@@ -20,7 +20,8 @@
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <img  class="recipe-image" :src="recipe.image" alt="">
+                        <img  v-if="recipe.image && recipe.image!=''" class="recipe-image" :src="recipe.image" alt="">
+                        <i v-else class="fas fa-utensils fa-10x"></i>
                     </div>
                 </div>
             </div>
@@ -154,7 +155,10 @@
 
                     <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col" @click="navega(`/food?id=${getItemId(foodItem.foodId)}&name=${foodItem.food}`)">
                         <div class="card h-100">
-                        <img :src="foodItem.image" class="card-img-top" alt="">
+                        <img  v-if="foodItem.image && foodItem.image!=''" :src="foodItem.image" class="card-img-top" alt="">
+                        <div v-else style="text-align: center;">
+                            <i class="fas fa-fish fa-8x"></i>
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">{{foodItem.food}}</h5>
                         </div>
@@ -199,8 +203,6 @@ export default{
                     this.recipe.healthLabels.forEach(hLabel => {
                         this.healthLabels.push(hLabel.replace("-", " "))
                     });
-                    console.log("this.recipe")
-                    console.log(this.recipe)
                     this.enerKal = this.recipe.totalNutrients['ENERC_KCAL'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['ENERC_KCAL'].unit
                     this.fat = this.recipe.totalNutrients['FAT'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['FAT'].unit
                     this.carbohydrates = this.recipe.totalNutrients['CHOCDF'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['CHOCDF'].unit
