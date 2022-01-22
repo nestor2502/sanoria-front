@@ -148,20 +148,6 @@ export default{
         return "";
       }
     },
-    addToSchema(){
-        console.log("se agrega")
-        const food = {
-            "userId": 1,
-            "label": "pollo rostizado",
-            "image": "imageUrl",
-            "recipeUri": "adasdasdasd"
-        }
-        console.log(food)
-       //storage.setStorage('userTemp', {test: true});
-       //let value = storage.getStorage('userTemp')
-       //console.log(value)
-       //storage.removeStorage('books')
-    },
     getFoodId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)
       return uri
