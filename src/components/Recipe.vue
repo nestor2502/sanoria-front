@@ -77,7 +77,7 @@
                                         <div class="card h-100">
                                         <img  src="../assets/img/kcal.jpg" class="card-img-top" alt="" width="20px">
                                         <div class="card-body">
-                                            <h3><span>52 Kcal</span></h3>
+                                            <h3><span>{{enerKal}}</span></h3>
                                             <h5 class="card-title">Calories</h5>
                                         </div>
                                         </div>
@@ -86,7 +86,7 @@
                                         <div class="card h-100">
                                         <img src="../assets/img/fat.jpg" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h3><span class="counter">0 g.</span></h3>
+                                            <h3><span class="counter">{{fat}}</span></h3>
                                             <h5 class="card-title">Fat</h5>
                                         </div>
                                         </div>
@@ -95,7 +95,7 @@
                                         <div class="card h-100">
                                         <img src="../assets/img/carbs.jpg" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h3><span class="counter">14 g.</span></h3>
+                                            <h3><span class="counter">{{carbohydrates}}</span></h3>
                                             <h5 class="card-title">Carbohydrates</h5>
                                         </div>
                                         </div>
@@ -104,7 +104,7 @@
                                         <div class="card h-100">
                                         <img src="../assets/img/sugar.jpg" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h3><span class="counter">16 g.</span></h3>
+                                            <h3><span class="counter">{{sugars}}</span></h3>
                                             <h5 class="card-title">Sugars</h5>
                                         </div>
                                         </div>
@@ -113,7 +113,7 @@
                                         <div class="card h-100">
                                         <img src="../assets/img/protein.jpg" class="card-img-top" alt="">
                                         <div class="card-body">
-                                            <h3><span class="counter">0.4 g.</span></h3>
+                                            <h3><span class="counter">{{proteins}}</span></h3>
                                             <h5 class="card-title">Protein</h5>
                                         </div>
                                         </div>
@@ -180,7 +180,12 @@ export default{
 		return{
 		recipe: {},
         user: {},
-        healthLabels: []
+        healthLabels: [],
+        enerKal: "",
+        fat: "",
+        carbohydrates: "",
+        sugars: "",
+        proteins: ""
 		}
 	},
 	created() {
@@ -194,6 +199,13 @@ export default{
                     this.recipe.healthLabels.forEach(hLabel => {
                         this.healthLabels.push(hLabel.replace("-", " "))
                     });
+                    console.log("this.recipe")
+                    console.log(this.recipe)
+                    this.enerKal = this.recipe.totalNutrients['ENERC_KCAL'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['ENERC_KCAL'].unit
+                    this.fat = this.recipe.totalNutrients['FAT'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['FAT'].unit
+                    this.carbohydrates = this.recipe.totalNutrients['CHOCDF'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['CHOCDF'].unit
+                    this.sugars = this.recipe.totalNutrients['SUGAR'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['SUGAR'].unit
+                    this.proteins = this.recipe.totalNutrients['PROCNT'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['PROCNT'].unit
                 }
                 else{
                     console.log("algo malo pasó :(")
