@@ -17,6 +17,7 @@ import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
 import Profile from '@/components/Profile'
+import ProfileEdit from '@/components/ProfileEdit'
 
 Vue.use(Router);
 
@@ -105,6 +106,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/profile-edit',
+    name: 'ProfileEdit',
+    component: ProfileEdit
   }
 ]
 

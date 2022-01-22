@@ -1,0 +1,53 @@
+#edit .form-control, .form-select {
+    color: rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;
+    text-align: center;
+    width: 50%;
+    display: inline-flex;
+}
+
+#edit .input-group {
+    display: inline-flex;
+    text-align: center;
+    width: 50%;
+}
+
+#edit .card {
+    border: none;
+}
+
+#edit .input-group-text {
+    color: rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;
+    background-color: white;
+    border-left: none;
+}
+
+#edit table {
+    display: inline-flex;
+}
+
+#edit tr {
+    padding: 5px;
+}
+
+#edit hr {
+    width: 100%;
+}
+
+.btn-save-changes {
+  font-size: 18px;
+  color: #f49839;
+  border: 1px solid #f49839;
+}
+  
+.btn-save-changes:hover {
+  color: #fff;
+  background-color: #f49839;
+}
+
+#edit {
+    padding-top: 2.5rem;
+}
+
+#btn-save-changes {
+    padding-top: 1rem;
+}

@@ -125,7 +125,7 @@ export default{
                 data.forEach(element => {
                   element.image = this.getImgUrl(element.image)
                 });
-                this.recomedations.push(this.chunk(data, 5, true))
+                this.recomedations.push(this.chunk(data, 5, false))
               }
               else{
                 console.log("algo malo pasó :(")
