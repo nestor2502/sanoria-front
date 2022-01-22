@@ -11,10 +11,10 @@
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center">
         <div class="col-12 col-lg-auto justify-content-start" id="dismiss">
-            <Slide v-if="!isRegister" noOverlay width="280" id="sidebar"
+            <Slide v-if="!isRegister" noOverlay width="280" id="sidebar" :closeOnNavigation="true"
               @openMenu="onOverlay"
               @closeMenu="offOverlay">
-                <a id="profile" class="align-items-center pointer" @click="navega('/profile', false)">
+                <a id="profile" class="align-items-center pointer" @click="navega('/profile', false); closeMenu()">
                   <i class="far fa-user"></i>
                   <span>Profile</span>
                 </a>
@@ -26,7 +26,7 @@
                   <i class="far fa-calendar-alt"></i>
                   <span>My tracking</span>
                 </a>
-                <a id="sign-out" class="align-items-center pointer" @click="navega('/home', true)">
+                <a v-if="isLogged" id="sign-out" class="align-items-center pointer" @click="navega('/home', true)">
                     <svg width="20" height="20" style="color: white"><use xlink:href="#sign-out-alt"/></svg>
                     <span>Sign out</span>
                 </a>
@@ -42,12 +42,12 @@
           </li>
         </ul>
         
-        <form v-if="!isRegister" class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
+        <div v-if="!isRegister" class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
           <div class="input-group col-md-4">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
+            <input @keyup.enter="navega('/search?q='+search, false)" type="text" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
             <button class="btn btn-search" type="button" @click="navega('/search?q='+search, false)"><i class="fa fa-search"></i></button>
           </div>
-        </form>
+        </div>
         <div v-if="isLogged" class="d-flex align-items-center">
           <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" aria-expanded="false">
             <img :src="'https://ui-avatars.com/api/?name='+user.name+'&background=f49839&size=128&rounded=true&color=ffffff'" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -110,8 +110,6 @@ export default {
       return this.$router.currentRoute.path.includes("/login")
     },
   },
-
-
 }
 </script>
 
