@@ -1,5 +1,4 @@
 <template>
-
     <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
@@ -17,24 +16,7 @@
                         <div class="input-group">
                             <input class="input--style-2" type="number" placeholder="Height" name="height">
                         </div>
-                        
-                <!--div class="form-group">
-                            <textarea type="password" cols="30" rows="10" class="form-control " placeholder="Plan calorico"/>
-                        </div-->
-                        <!--div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="class">
-                                    <option disabled="disabled" selected="selected">Class</option>
-                                    <option>Class 1</option>
-                                    <option>Class 2</option>
-                                    <option>Class 3</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-                        </div-->
                         <div class="p-t-30">
-                          <!--button > v-bind=""</button-->
-                          <!--children :ValorRecibido="NumeroAenviar"  @click="openAdicionalInfo">Next -->
                             <button class="btn btn--radius btn--green" type="submit" @click="openAdicionalInfo">Next
                               <i class="fas fas-arrow-right"> </i>
                             </button >

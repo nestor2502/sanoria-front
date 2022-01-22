@@ -1,13 +1,13 @@
 <template>
-
-    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+<div>
+    <div v-if="mostrarSignUp" class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Sign up</h2>
-                    <!--form method="POST" id="form" v-on:submit.prevent="procesar()"-->
-                    <form method="POST" id="form" >
+                    <!--form  id="form" v-on:button.prevent="procesar()"-->
+                    <form  id="form" >
                         <div class="input-group" id="app">
                             <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username">
                             
@@ -15,7 +15,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                  <input @keypress="isNumber($event)" v-model="input_value" placeholder="DD/MM/YYYY" type="text" maxlength="10" autofocus="autofocus">
+                                  <input @keypress="isNumber($event)" v-model="birth" placeholder="YYYY-MM-DD" type="date" maxlength="10" autofocus="autofocus">
                                     <!--input @keypress="isNumber($event)" class="input--style-2 js-datepicker" placeholder="__/__/____" type="email" name="age" maxlength="8" v-model="age"-->
                                 </div>
                             </div>
@@ -38,42 +38,343 @@
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button class="btn btn--radius btn--green" @click="openPersonInfo">Next </button>
+                              <button class="btn btn--radius btn--green" @click="selectView(2)">Next </button>
                               <!--button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button-->
                             </div>
                        </div>
                         
-                        <!--input type="submit" value="Next" title="Next" class="btn btn--radius btn--green" @click="openPersonInfo"/-->
+                        <!--input type="button" value="Next" title="Next" class="btn btn--radius btn--green" @click="openPersonInfo"/-->
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <div v-if="mostrarInfo" class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Personal Info</h2>
+                    <form >
+                        <div class="input-group">
+                            <input class="input--style-2" type="text" placeholder="Gender(Male or Female)" name="gender" v-model="gender">
+                        </div>
+     
+                        <div class="input-group">
+                            <input class="input--style-2" type="number" placeholder="Weight in Kg" name="weight" v-model="weight">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-2" type="number" placeholder="Height" name="height" v-model="height">
+                        </div>
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
+                              <i class="fas fas-arrow-right"> </i>
+                            </button >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div v-if="mostrarDiet" class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Diets</h2>
+                    <form >
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">High-Fiber</label>
+                                  <input class="form-check-input"  type="checkbox" id="checkboxNoLabel" value="" aria-label="...">      
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        High-Protein
+                                    </label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                  <div><label class="form-check-label" for="flexCheckDefault">
+                                        Low-Sodium
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        Low-Carb
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Low-Fat</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                    
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        Balanced
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                  <div><label class="form-check-label" for="flexCheckDefault">
+                                        No oil added
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        No-sugar
+                                    </label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        Pork-free
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        Red meat-free
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                   
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">
+                                        Vegan
+                                    </label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div><label class="form-check-label" for="flexCheckDefault">
+                                        Vegetarian
+                                    </label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                          </div>
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >Next
+                              <i class="fas fas-arrow-right"> </i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-if="mostrarAle" class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Allergies</h2>
+                    <form >
+                        <div class="row row-space">
+                            <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Celery</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Celery" aria-label="...">
+                                     
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Crustacean</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Crustacean" aria-label="...">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Dairy</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Dairy" aria-label="...">              
+                            </div>
+                            </div>
+                            <div class="col-2">
+                              <div>
+                                  <label class="form-check-label" for="flexCheckDefault">Egg</label>
+                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Egg" aria-label="...">
+                              </div>
+                            </div>  
+                            <div class="row row-space">
+                              <div class="col-2">
+                                    <div>
+                                      <label class="form-check-label" for="flexCheckDefault">Fish</label>
+                                      <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Fish" aria-label="...">
+                                      
+                                  </div>
+                              </div>
+                              <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Gluten</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Gluten" aria-label="...">
+                                  </div>
+                              </div>
+                              <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Lupine</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Lupine" aria-label="...">              
+                              </div>
+                              </div>
+                              <div class="col-2">
+                                <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Mustard</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Mustard" aria-label="...">
+                                </div>
+                              </div>   
+                        </div> 
+                        <div class="row row-space">
+                              <div class="col-2">
+                                    <div>
+                                      <label class="form-check-label" for="flexCheckDefault">Peanut</label>
+                                      <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Peanut" aria-label="...">
+                                      
+                                  </div>
+                              </div>
+                              <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Sesame</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Sesame" aria-label="...">
+                                  </div>
+                              </div>
+                              <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Shellfish</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Shellfish" aria-label="...">              
+                              </div>
+                              </div>
+                              <div class="col-2">
+                                <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Soy</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Soy" aria-label="...">
+                                </div>
+                              </div>   
+                        </div> 
+                        <div class="row last-row-space">
+                              <div class="col-2" style="margin-right:1rem">
+                                    <div>
+                                      <label class="form-check-label" for="flexCheckDefault">Tree Nut</label>
+                                      <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies['Tree Nut']" aria-label="...">
+                                      
+                                  </div>
+                              </div>
+                              <div class="col-2">
+                                  <div>
+                                    <label class="form-check-label" for="flexCheckDefault">Wheat</label>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" v-model="userallergies.Wheat" aria-label="...">
+                                  </div>
+                              </div>
+  
+                        </div> 
+                       
+                        <div class="p-t-30">
+                            <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP
+                              
+                            </button>
+                        </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </template>
 
 <script scoped>
-
-  //import PersonInfo from '../components/PersonInfo';
-  import router from '../router';
+import storage from "../storage"
+import axios from 'axios';
+import router from '../router';
   
     export default {
-      components:{
 
-      },
+
         data() {
             return {
+              mostrarSignUp: true,
+              mostrarInfo: false,
+              mostrarDiet: false,
+              mostrarAle: false,
+              email: '',
+              username: '',
+              birth: '',
+              password: '',
+              gender:'',
+              height:'',
+              weight:'',
+
+              userdiets: {
+                "High-Fiber": false,
+                "High-Protein": false,
+                "Low-Sodium": false,
+                "Low-Carb": false,
+                "Balanced": false,
+                "No oil added": false,
+                "No-sugar": false,
+                "Pork-free": false,
+                "Red meat-free": false,
+                "Vegan": false,
+                "Vegetarian": false,
+                
+              },
+              userallergies: {
+                "Celery": false,
+                "Crustacean": false,
+                "Dairy": false,
+                "Egg": false,
+                "Fish": false,
+                "Gluten": false,
+                "Lupine": false,
+                "Mustard": false,
+                "Peanut": false,
+                "Sesame": false,
+                "Shellfish": false,
+                "Soy": false,
+                "Tree Nut": false,
+                "Wheat": false,
+            }
               
-                username:'',
-                email:'',
-                password:'',
-                age: '',
-              
-              input_value: '',
             }
         },
         
         methods: { 
+          navega: function (route){
+            router.push(route)
+              .catch(() => {})
+          },
           isNumber: function(evt) {
 
               evt = (evt) ? evt : window.event;
@@ -92,6 +393,67 @@
           openPersonInfo: function() {
             router.push({'name':'PersonInfo'})
           },
+          selectView(viewId){
+            switch(viewId){
+              case 1: 
+                this.mostrarSignUp = true;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 2: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = true;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 3: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = true;
+                this.mostrarAle = false;
+                break
+              case 4: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = true;
+                break;
+            }
+          },
+          createUser(){
+
+            let finalAllergies = [];
+            let llaves = Object.keys(this.userallergies)
+            llaves.forEach(allergie => {
+              if(this.userallergies[allergie] == true){
+                finalAllergies.push(allergie)
+              }
+            })
+            let userToCreate= {
+              name: this.username,
+              email: this.email,
+              password: this.password,
+              gender: this.gender,
+              birth: this.birth,
+              weight: this.weight,
+              height: this.height,
+              allergies: finalAllergies
+            }
+            console.log("userToCreate")
+            console.log(userToCreate)
+            axios.post('https://sanoria-api.herokuapp.com/user', userToCreate)
+              .then((res) => {
+                if (res.status === 201) {
+                  storage.setStorage('user', res.data)
+                  console.log(res.data)
+                  this.navega("/")
+                } else {
+                  console.log("hubo un error")
+                }
+              }).catch((err) => console.log(err))
+
+          }
         },
     }
 </script>
@@ -127,10 +489,16 @@
   justify-content: space-between;
 }
 
+.last-row-space {
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+}
+/* Nos dice cuantas columnas en Html hay*/
 .col-2 {
-  width: -webkit-calc((100% - 60px) / 2);
-  width: -moz-calc((100% - 60px) / 2);
-  width: calc((100% - 60px) / 2);
+  width: -webkit-calc((100% - 60px) / 4);
+  width: -moz-calc((100% - 60px) / 4);
+  width: calc((100% - 60px) / 4);
 }
 
 @media (max-width: 767px) {
@@ -164,7 +532,7 @@ html {
 }
 
 /* ==========================================================================
-   #RESET
+   #RESET 
    ========================================================================== */
 /**
  * A very simple reset that sits on top of Normalize.css.
@@ -234,7 +602,7 @@ h1 {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 h3 {
@@ -272,7 +640,7 @@ h6 {
 }
 
 .p-t-180 {
-  padding-top: 180px;
+  padding-top: 100px;
 }
 
 .p-t-20 {
@@ -395,15 +763,16 @@ input {
   -moz-box-shadow: none;
   box-shadow: none;
   width: 100%;
-  font-size: 14px;
+  font-size: 17px;
   font-family: inherit;
 }
 
 /* input group 1 */
-/* end input group 1 */
+/* end input group 1
+--------se puede ver como el placeholder de cada espacio------  */
 .input-group {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 15px;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -422,7 +791,7 @@ input {
 }
 
 .input--style-2 {
-  padding: 9px 0;
+  padding: 11px 0;
   color: #666;
   font-size: 16px;
   font-weight: 500;
@@ -558,7 +927,7 @@ input {
   border-radius: 3px;
   background: #fff;
 }
-
+/* contorno de la tarjeta*/
 .card-2 {
   -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
@@ -578,11 +947,8 @@ input {
 
 .card-2 .card-body {
   display: table-cell;
-  padding: 80px 90px;
-  padding-bottom: 88px;
-}
-.notValid {
-  color:rgb(235, 74, 74);
+  padding: 80px 60px;
+  padding-bottom: 115px;
 }
 
 @media (max-width: 767px) {
@@ -599,6 +965,56 @@ input {
     display: block;
     padding: 60px 50px;
   }
+  
 }
+  /* check-box*/
+  .form-check-input {
+    margin-left: 5px;
+    background-color: gainsboro !important;
+    border-color: gainsboro!important;
+    
+}
+.form-check-input:checked {
+    background-color: rgb(101, 122, 68)!important;
+    border-color: rgb(101, 122, 68)!important;
+
+}
+
+.checkbox-wrap {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-wrap input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.checkbox-primary {
+    color: #f49839;
+}
+.checkbxinput {
+  color: green;
+  background-color: green;
+}
+
+
 
 </style>
