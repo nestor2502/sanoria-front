@@ -1,4 +1,5 @@
 <template>
+
   <div id="tabs" class="container">
     <div class="tabs">
       <a
@@ -34,12 +35,11 @@
             </tr>
           </tbody>
         </table>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoMalestar">
+        <button type="button" class="custom-btn custom-btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoMalestar">
           New
         </button>
+       <button type="button" class="custom-btn custom-btn-primary">Primary</button>
 
-        <!-- Modal -->
         <div class="modal fade" id="nuevoMalestar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style scoped>
-/* RESET */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -178,15 +178,13 @@ a {
   color: #f49839;
 }
 .container {
-  max-width: 620px;
-  min-width: 420px;
+  width: 100%;
   margin: 40px auto;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9em;
   color: #888;
 }
 
-/* Style the tabs */
 .tabs {
   overflow: hidden;
   margin-left: 20px;
@@ -213,13 +211,11 @@ a {
   border-right: 1px solid #ccc;
 }
 
-/* Change background color of tabs on hover */
 .tabs a:hover {
   background-color: #aaa;
   color: #fff;
 }
 
-/* Styling for active tab */
 .tabs a.active {
   background-color: #fff;
   color: #484848;
@@ -227,11 +223,41 @@ a {
   cursor: default;
 }
 
-/* Style the tab content */
 .tabcontent {
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 3px 3px 6px #e1e1e1;
+}
+
+.custom-btn{
+  display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.custom-btn:hover{
+   background-color: red;
+   border-color: red;
+}
+
+.custom-btn-primary {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
 }
 </style>

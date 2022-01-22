@@ -1,8 +1,10 @@
 <template>
   <div class="wrapper" id="app">
     <!--img alt="Vue logo" src="./assets/logo.png"-->
-    <Header/>
-    <router-view :key="$route.fullPath"></router-view>
+    <Header  :key="$route.fullPath+ '-H'" />
+    <transition name="slide" mode="out-in">
+      <router-view :key="$route.fullPath"></router-view>
+    </transition>
     <Footer/>
   </div>
 </template>
@@ -36,4 +38,15 @@ router-view {
   color: #2c3e50;
   margin-top: 25px;
 }
+
+.slide-enter-active,
+.slide-leave-active{
+  transition: opacity 0.5s, transform 0.5s ;
+}
+.slide-enter,
+.slide-leave-to{
+  opacity: 0;
+  transform: translateX(-30%);
+}
+
 </style>

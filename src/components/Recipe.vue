@@ -103,7 +103,7 @@
                 </div>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
 
-                    <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col" @click="navega(`/food?id=${getFoodId(foodItem.foodId)}&name=${foodItem.food}`)">
+                    <div v-for="foodItem in recipe.ingredients" :key="foodItem.id" class="col" @click="navega(`/food?id=${getItemId(foodItem.foodId)}&name=${foodItem.food}`)">
                         <div class="card h-100">
                         <img :src="foodItem.image" class="card-img-top" alt="">
                         <div class="card-body">
@@ -124,23 +124,23 @@
 <script>
 import router from '../router'
 import axios from 'axios';
-//import storage from "../storage"
+import storage from "../storage"
 
 export default{
 	data(){
 		return{
-		recipe: {}
+		recipe: {},
+        user: {}
 		}
 	},
 	created() {
+        this.user = storage.getStorage('user');
 		this.recipeUri = this.$route.query.id
 		axios.get(`https://sanoria-api.herokuapp.com/recipe/${this.recipeUri}`)
             .then( result => {
                 if(result.status == 200){
                     let finalData = result.data;
                     this.recipe = finalData.recipe;
-                    console.log("this.recipe")
-                    console.log(this.recipe)
                 }
                 else{
                     console.log("algo malo pasó :(")
@@ -152,7 +152,7 @@ export default{
     msg: String,
   },
   methods: {
-    navega: function (route){
+    navega(route){
       router.push(route)
         .catch(() => {})
     },
@@ -176,18 +176,23 @@ export default{
     addToSchema(){
         console.log("se agrega")
         const food = {
-            "userId": 1,
-            "label": "pollo rostizado",
-            "image": "imageUrl",
-            "recipeUri": "adasdasdasd"
+            "userId": this.user.id,
+            "label": this.recipe.label,
+            "image": this.recipe.image? this.recipe.image: "",
+            "recipeUri": this.recipe.uri
         }
         console.log(food)
-       //storage.setStorage('userTemp', {test: true});
-       //let value = storage.getStorage('userTemp')
-       //console.log(value)
-       //storage.removeStorage('books')
+        axios.post('https://sanoria-api.herokuapp.com/recipe', food)
+            .then((res) => {
+				if (res.status === 201) {
+					console.log("se agregó al esquema")
+				} else {
+					console.log("hubo un error")
+				}
+			}).catch((err) => console.log(err))
+
     },
-    getFoodId(uriValue){
+    getItemId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)
       return uri
     }
