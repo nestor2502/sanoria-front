@@ -1,0 +1,36 @@
+#myCarousel {
+    padding-bottom: 20px;
+}
+.carousel-item img {
+    height: 500px;
+}
+section{
+    padding: 30px 50px;
+}
+
+section .section-header {
+    margin-bottom: 22px;
+}
+
+section .section-header h2 {
+    text-align: justify;
+    font-size: 26px;
+    font-weight: 300;
+    margin: 0 0 0 8px;
+}
+
+.recomendations img {
+    height: 200px;
+}
+
+.recomendations .carousel-inner {
+    padding: 10px 0px;
+}
+
+.recomendations .carousel-item {
+    height: 100%;
+}
+
+.recomendations .card {
+    height: 100%;
+}
