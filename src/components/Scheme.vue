@@ -107,7 +107,8 @@ export default {
       chunks: [],
       chunk: [],
       schema: "",
-      toDelete: 0
+      toDelete: 0,
+      user: {}
     };
   },
 
@@ -126,7 +127,7 @@ export default {
     },
     async getData() {
       try {
-        let response = await fetch("https://sanoria-api.herokuapp.com/recipe/schema/1");
+        let response = await fetch("https://sanoria-api.herokuapp.com/recipe/schema/"+ this.user.id);
         this.posts = await response.json();
         this.chunks = this.spliceIntoChunks(this.posts, 6);
         this.chunk = this.chunks[0];
@@ -156,9 +157,11 @@ export default {
   }
   },
   created() {
-    this.getData();
     let userTemp = storage.getStorage("user")
+    this.user = storage.getStorage("user")
+    console.log(this.user)
     this.schema = userTemp.scheme.replace("-", " ");
+    this.getData();
   },
 
 };
