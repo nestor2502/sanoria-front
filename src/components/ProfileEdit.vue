@@ -17,10 +17,10 @@
             <h6 class="mb-0">Gender</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <select class="form-select" aria-label="Default select example">
-                <option :value="user.gender" selected disabled hidden>{{user.gender}}</option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
+            <select class="form-select" aria-label="Default select example" v-model="usergender">
+                <option v-bind:value="user.gender" selected disabled hidden>{{user.gender}}</option>
+                <option v-bind:value="'Female'">Female</option>
+                <option v-bind:value="'Male'">Male</option>
             </select>
           </div>
         </div>
