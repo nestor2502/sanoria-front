@@ -35,6 +35,10 @@
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
                             <h2>{{recipe.label}}</h2>
+                            <h6 v-if="warning" style="color: red; padding-bottom:2rem;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                               You may be allergic to any ingredient
+                            </h6>
                             <div class="receipe-duration">
                                 <h6 v-for="hLabel in healthLabels" :key= "hLabel.id">&nbsp;{{hLabel}}</h6>
                             </div>
@@ -195,11 +199,14 @@ export default{
         fat: "",
         carbohydrates: "",
         sugars: "",
-        proteins: ""
+        proteins: "",
+        userAllergies: [],
+        warning: false
 		}
 	},
 	created() {
         this.user = storage.getStorage('user');
+        console.log(this.user)
 		this.recipeUri = this.$route.query.id
 		axios.get(`https://sanoria-api.herokuapp.com/recipe/${this.recipeUri}`)
             .then( result => {
@@ -209,6 +216,21 @@ export default{
                     this.recipe.healthLabels.forEach(hLabel => {
                         this.healthLabels.push(hLabel.replace("-", " "))
                     });
+                    if(this.user){
+                        this.user.allergies.forEach(element => {
+                            this.userAllergies.push(element.name)
+                        })
+                        this.userAllergies.forEach(label => {
+                            let arr = label.split(" ");
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+                            }
+                            if(!this.recipe.healthLabels.includes(arr.join(" ").replace(" ", "-")+"-free")){
+                                //console.log("entra: ", arr.join(" ").replace(" ", "-")+"-free")
+                                this.warning = true;
+                            }
+                        })
+                    }
                     this.enerKal = this.recipe.totalNutrients['ENERC_KCAL'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['ENERC_KCAL'].unit
                     this.fat = this.recipe.totalNutrients['FAT'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['FAT'].unit
                     this.carbohydrates = this.recipe.totalNutrients['CHOCDF'].quantity.toFixed(2) + " " +  this.recipe.totalNutrients['CHOCDF'].unit

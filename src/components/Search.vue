@@ -57,9 +57,7 @@ export default {
             this.loading = false;
             if(result.status == 200){
               let finalData = result.data.data;
-              console.log(finalData)
               if (finalData.length == 0) {
-                console.log("algo")
                 this.successfulRequest = false
                 this.notFoundRequest = true
               } 
