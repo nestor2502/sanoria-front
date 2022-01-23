@@ -11,7 +11,7 @@
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center">
         <div class="col-12 col-lg-auto justify-content-start" id="dismiss">
-            <Slide v-if="!isRegister" noOverlay width="280" id="sidebar" :closeOnNavigation="true"
+            <SideMenu v-if="!isRegister" noOverlay width="280" id="sidebar" :closeOnNavigation="true"
               @openMenu="onOverlay"
               @closeMenu="offOverlay">
                 <a id="profile" class="align-items-center pointer" @click="navega('/profile', false)">
@@ -30,7 +30,8 @@
                     <svg width="20" height="20" style="color: white"><use xlink:href="#sign-out-alt"/></svg>
                     <span>Sign out</span>
                 </a>
-            </Slide>
+            </SideMenu>
+            <!--SideMenu/-->
         </div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0">
           <li>
@@ -110,8 +111,9 @@
 <script>
 //import axios from 'axios';
 import router from '../router'
-import {Slide} from 'vue-burger-menu'
+//import {Slide} from 'vue-burger-menu'
 import storage from "../storage"
+import SideMenu from './SideMenu.vue'
 
 export default {
   created() {
@@ -135,7 +137,7 @@ export default {
       mealType: ''
     }
   },
-  components: {Slide},
+  components: {SideMenu},
   methods: {
     navega: function (route, exit){
       this.offOverlay()
