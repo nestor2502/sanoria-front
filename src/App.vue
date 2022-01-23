@@ -6,6 +6,42 @@
       <router-view :key="$route.fullPath"></router-view>
     </transition>
     <Footer/>
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <div style="font-size: 1.5rem; padding: 2rem;">
+                <img src="./assets/img/error.png" alt="" style="width:30%;padding-bottom: 2rem">
+                <br>
+                Ooops! 
+                <br>
+                An error occurred
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Error Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <div style="font-size: 1.5rem; padding: 2rem;">
+                <img src="./assets/img/check.png" alt="" style="width:30%;padding-bottom: 2rem">
+                <br>
+                Saved successfully!
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+        </div>
+        </div>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -48,5 +84,34 @@ router-view {
   opacity: 0;
   transform: translateX(-30%);
 }
+
+.btn-confirm-modal {
+  color: #f49839;
+  border: 1px solid #f7b36e;
+  background-color: #f7b36e;
+  color: #fff;
+}
+  
+.btn-confirm-modal:hover {
+  color: #fff;
+  background-color: #f49839;
+}
+
+.btn-cancel-modal {
+  color: #f49839;
+  border: 1px solid #f49839;
+  background-color: #f7b36e;
+  color: #fff;
+}
+  
+.btn-cancel-modal:hover {
+  color: #fff;
+  background-color: #f49839;
+}
+
+.modal-footer-center{
+  display: block;
+}
+
 
 </style>

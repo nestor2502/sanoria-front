@@ -44,7 +44,7 @@
                     <div class="col-12 col-md-4">
                         <div class="receipe-ratings text-right my-5">
                             
-                            <a class="btn delicious-btn" @click="addToSchema()">
+                            <a class="btn delicious-btn" data-bs-toggle="modal" data-bs-target="#confirmModal">
                                <i class="fas fa-plus"></i>
                                 Add to schema
                             </a>
@@ -57,22 +57,7 @@
                                         <!-- Nutrients -->
                     <div class="col-12 col-lg-8 nutriment-cards">   
                         <div class="ingredients">
-                            <h4>Nutrition Facts</h4>
 
-                            <!--table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Nutrient</th>
-                                    <th scope="col">quantity</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(item, name,index2) in recipe.totalNutrients" :key="index2">
-                                        <td>{{item.label}}</td>
-                                        <td>{{item.quantity.toFixed(2)}} {{item.unit}}</td>
-                                    </tr>
-                                </tbody>
-                                </table-->
                                 <div class="row row-cols-1 row-cols-md-3 g-3">
                                     <div class="col food-image">
                                         <div class="card h-100">
@@ -170,7 +155,31 @@
             </div>
         </div>
     </div>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#successModal">
+    Launch demo modal
+    </button>
+
+    <!-- Confirm Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <div style="font-size: 1.5rem; padding: 2rem;">
+                Do you want to add this recipe to your scheme?
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-center">
+            <button type="button" class="btn btn-confirm-modal" @click="addToSchema()" data-bs-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        </div>
+        </div>
     </div>
+    </div>
+
+</div>
+
+
   
 </template>
 
@@ -252,19 +261,21 @@ export default{
         axios.post('https://sanoria-api.herokuapp.com/recipe', food)
             .then((res) => {
 				if (res.status === 201) {
-					console.log("se agregó al esquema")
+					window.$("#successModal").modal("show");
 				} else {
-					console.log("hubo un error")
+					window.$("#errorModal").modal("show");
 				}
 			}).catch((err) => console.log(err))
-
     },
     getItemId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)
       return uri
-    }
+    },
+
   }
 }
+
+
 </script>
 
 <style scoped>
