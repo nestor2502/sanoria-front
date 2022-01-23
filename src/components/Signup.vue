@@ -31,7 +31,7 @@
                         <div class="row row-space">
                             <div class="col">
                                 <div class="input-group">
-                                    <input class="input--style-2 " type="password" placeholder="******" name="password" v-model="password" required>
+                                    <input class="input--style-2 " type="password" placeholder="Password" name="password" v-model="password" required>
                                     
                                 </div>
                             </div>
