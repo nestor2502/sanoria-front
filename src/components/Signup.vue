@@ -38,7 +38,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectRec(2)">Next </button>
+                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectRec(2)">Next &nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+                              </button>
                               
                             </div>
                        </div>
@@ -69,10 +70,12 @@
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next</button> 
+                              <button  class="btn btn--radius btn--green" @click="selectView(1)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button>  
+                              
                             </div>
                             <div class="col text-center" >
-                               <button  class="btn btn--radius btn--green" @click="selectView(1)">Return </button>  
+                               <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
+                                  &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button> 
                             </div>
                        </div>
                     </form>
@@ -188,10 +191,13 @@
                           </div>
                            <div class="form-group row">
                               <div class="col text-center" >
-                                <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >Next </button>
+                                <button  class="btn btn--radius btn--green" @click="selectView(2)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button>
+                                
                               </div>
                               <div class="col text-center" >
-                                 <button  class="btn btn--radius btn--green" @click="selectView(2)">Return </button>  
+                                 <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >
+                                  Next &nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+                                   </button>
                               </div>
                             </div>           
                 </div>
@@ -303,10 +309,11 @@
                         </div> 
                         <div class="form-group row">
                               <div class="col text-center" >
-                                <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP</button>
+                                <button  class="btn btn--radius btn--green" @click="selectView(3)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button> 
+                                
                               </div>
                               <div class="col text-center" >
-                                 <button  class="btn btn--radius btn--green" @click="selectView(3)">Return </button>  
+                                  <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP</button>
                               </div>
                           </div>
                        
