@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4">
+                    <div v-if="user" class="col-12 col-md-4">
                         <div class="receipe-ratings text-right my-5">
                             
                             <a class="btn delicious-btn" data-bs-toggle="modal" data-bs-target="#confirmModal">
@@ -193,7 +193,7 @@ export default{
 	data(){
 		return{
 		recipe: {},
-        user: {},
+        user: null,
         healthLabels: [],
         enerKal: "",
         fat: "",
@@ -201,7 +201,7 @@ export default{
         sugars: "",
         proteins: "",
         userAllergies: [],
-        warning: false
+        warning: false,
 		}
 	},
 	created() {
