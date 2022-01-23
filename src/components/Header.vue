@@ -30,7 +30,6 @@
                     <svg width="20" height="20" style="color: white"><use xlink:href="#sign-out-alt"/></svg>
                     <span>Sign out</span>
                 </a>
-
             </Slide>
         </div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0">
@@ -43,13 +42,57 @@
         </ul>
         
         <div v-if="!isRegister" class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="background-color: transparent;">
-          <div class="input-group col-md-4">
-            <input @keyup.enter="navega('/search?q='+search, false)" type="text" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
-            <button class="btn btn-search" type="button" @click="navega('/search?q='+search, false)"><i class="fa fa-search"></i></button>
+          <div id="" class="input-group col-md-4">
+            <button class="btn btn-search align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#advanced-search" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fas fa-plus"></i>
+            </button>
+            <input @keyup.enter="advancedSearch()" type="text" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
+            <button class="btn btn-search" type="button" @click="advancedSearch()"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+        <div class="collapse p-2" id="advanced-search">
+          <div class="row">
+            <div class="col-sm-4">
+              <select class="form-select" v-model="allergie">
+                <option v-bind:value="''" selected>Allergie</option>
+                <option v-bind:value="'celery-free'">Celery</option>
+                <option v-bind:value="'crustacean-free'">Crustacean</option>
+                <option v-bind:value="'dairy-free'">Dairy</option>
+                <option v-bind:value="'egg-free'">Egg</option>
+                <option v-bind:value="'fish-free'">Fish</option>
+                <option v-bind:value="'gluten-free'">Gluten</option>
+                <option v-bind:value="'lupine-free'">Lupine</option>
+                <option v-bind:value="'mustard-free'">Mustard</option>
+                <option v-bind:value="'peanut-free'">Peanut</option>
+                <option v-bind:value="'sesame-free'">Sesame</option>
+                <option v-bind:value="'shellfish-free'">Shellfish</option>
+                <option v-bind:value="'soy-free'">Soy</option>
+                <option v-bind:value="'tree-nut-free'">TreeNut</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <select class="form-select" v-model="diet">
+                <option v-bind:value="''" selected>Diet</option>
+                <option v-bind:value="'balanced'">Balanced</option>
+                <option v-bind:value="'high-fiber'">High fiber</option>
+                <option v-bind:value="'high-protein'">High protein</option>
+                <option v-bind:value="'low-carb'">Low carb</option>
+                <option v-bind:value="'low-fat'">Low fat</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <select class="form-select" v-model="mealType">
+                <option v-bind:value="''">Meal type</option>
+                <option v-bind:value="'breakfast'">Breakfast</option>
+                <option v-bind:value="'dinner'">Dinner</option>
+                <option v-bind:value="'lunch'">Lunch</option>
+                <option v-bind:value="'teatime'">Tea time</option>
+              </select>
+            </div>
           </div>
         </div>
         <div v-if="isLogged" class="d-flex align-items-center">
-          <a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser1" aria-expanded="false">
+          <a href="/profile" class="d-block link-dark text-decoration-none" id="dropdownUser1" aria-expanded="false">
             <img :src="'https://ui-avatars.com/api/?name='+user.name+'&background=f49839&size=128&rounded=true&color=ffffff'" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
@@ -87,6 +130,9 @@ export default {
       get isLogged() {
         return storage.getStorage('user') != null;
       },
+      allergie: '',
+      diet: '',
+      mealType: ''
     }
   },
   components: {Slide},
@@ -94,8 +140,8 @@ export default {
     navega: function (route, exit){
       this.offOverlay()
       if(exit) storage.removeStorage('user')
-      router.push(route)
-        .catch(() => {})
+        router.push(route)
+        .catch(() => {}) 
     },
     openRegistroPage: function() {
       router.push({'name':'Registro'});
@@ -109,7 +155,21 @@ export default {
     getPathVal(){
       return this.$router.currentRoute.path.includes("/login")
     },
-  },
+    advancedSearch() {
+      if (this.search.trim() == "") {
+        this.search = ""
+        return
+      }
+      let searchquery = "/search?q=" +this.search
+      if (this.allergie != "")
+        searchquery += "&health="+ this.allergie
+      if (this.diet != "")
+        searchquery += "&schema="+ this.diet
+      if (this.mealType != "")
+        searchquery += "&mealType="+ this.mealType
+      this.navega(searchquery, false)
+    }
+  }
 }
 </script>
 
