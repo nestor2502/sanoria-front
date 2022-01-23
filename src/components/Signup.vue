@@ -9,13 +9,13 @@
                     <!--form  id="form" v-on:button.prevent="procesar()"-->
                     <form  id="form" >
                         <div class="input-group" id="app">
-                            <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username">
+                            <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username" required/>
                             
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                  <input @keypress="isNumber($event)" v-model="birth" placeholder="YYYY-MM-DD" type="date" maxlength="10" autofocus="autofocus">
+                                  <input @keypress="isNumber($event)" v-model="birth" placeholder="YYYY-MM-DD" type="date" maxlength="10" autofocus="autofocus" required>
                                     <!--input @keypress="isNumber($event)" class="input--style-2 js-datepicker" placeholder="__/__/____" type="email" name="age" maxlength="8" v-model="age"-->
                                 </div>
                             </div>
@@ -24,21 +24,21 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-2 js-datepicker" type="email"  placeholder="E-mail" name="email" v-model="email">
+                                    <input class="input--style-2 js-datepicker" type="email"  placeholder="E-mail" name="email" v-model="email" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-2" type="password" placeholder="******" name="password" v-model="password">
+                                    <input class="input--style-2" type="password" placeholder="******" name="password" v-model="password" required>
                                     
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button class="btn btn--radius btn--green" @click="selectView(2)">Next </button>
+                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectView(2)">Next </button>
                               <!--button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button-->
                             </div>
                        </div>
@@ -68,7 +68,7 @@
                             <input class="input--style-2" type="number" placeholder="Height" name="height" v-model="height">
                         </div>
                         <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
+                            <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
                               <i class="fas fas-arrow-right"> </i>
                             </button >
                         </div>
@@ -84,19 +84,19 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Diets</h2>
-                    <form >
+                    
                         <div class="row row-space">
                             <div class="col-2">
                                 <div>
                                   <label class="form-check-label" for="flexCheckDefault">High-Fiber</label>
-                                  <input class="form-check-input"  type="checkbox" id="checkboxNoLabel" value="" aria-label="...">      
+                                  <input class="form-check-input"  type="radio" id="checkboxNoLabel" value="" aria-label="...">      
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         High-Protein
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                   <div><label class="form-check-label" for="flexCheckDefault">
                                         Low-Sodium
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         Low-Carb
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -121,14 +121,14 @@
                             <div class="col-2">
                                 <div>
                                   <label class="form-check-label" for="flexCheckDefault">Low-Fat</label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                    
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">                                    
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         Balanced
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                   <div><label class="form-check-label" for="flexCheckDefault">
                                         No oil added
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         No-sugar
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         Pork-free
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         Red meat-free
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                   
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">                                   
                                 </div>
                             </div>
                             <div class="col-2">
@@ -170,7 +170,7 @@
                                   <label class="form-check-label" for="flexCheckDefault">
                                         Vegan
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                 <div><label class="form-check-label" for="flexCheckDefault">
                                         Vegetarian
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel" value="" aria-label="...">
                                      
                                 </div>
                             </div>
@@ -188,7 +188,7 @@
                               <i class="fas fas-arrow-right"> </i>
                             </button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -318,6 +318,7 @@
 import storage from "../storage"
 import axios from 'axios';
 import router from '../router';
+
   
     export default {
 
@@ -328,8 +329,10 @@ import router from '../router';
               mostrarInfo: false,
               mostrarDiet: false,
               mostrarAle: false,
-              email: '',
               username: '',
+                
+              email: '',
+              
               birth: '',
               password: '',
               gender:'',
@@ -369,8 +372,22 @@ import router from '../router';
               
             }
         },
+        computed:{
+          habilitaBoton: function() {
+            return !this.username || !this.email || !this.birth || !this.password ;
+            
+          },
+       
+        habilitaBoton2: function() {
+            return !this.gender || !this.weight || !this.height  ;
+            
+          },
+        },
         
         methods: { 
+       
+          
+          
           navega: function (route){
             router.push(route)
               .catch(() => {})
