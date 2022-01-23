@@ -33,9 +33,9 @@
                 <!--div class="col" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)"-->
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img :src="post.image">
+                        <img :src="post.image" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)">
                             <div class="card-body">
-                                <p class="card-text">{{post.label}}</p>
+                                <p class="card-text" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)">{{post.label}}</p>
                                     <div class="d-flex justify-content-end align-items-center">
                                         <div class="btn-group">
                                             <button 
@@ -79,7 +79,6 @@
       <div class="modal-body">
           <div style="font-size: 1.5rem; padding: 2rem;">
               Do you want to remove this recipe?
-              {{toDelete}}
           </div>
       </div>
       <div class="modal-footer modal-footer-center">

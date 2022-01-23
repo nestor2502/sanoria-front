@@ -1,5 +1,6 @@
 <template>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+	<div>
+    <div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
                 <div class="card-heading"></div>
@@ -11,6 +12,9 @@
                         </div>
 						<div class="input-group">
                             <input class="input--style-2" type="password" placeholder="Password" name="Password" v-model="dataObj.password">
+                        </div>
+                        <div v-if="!valid" class="alert alert-danger" role="alert">
+                          Incorrect username or password
                         </div>
 
                         <div class="p-t-30">
@@ -25,7 +29,10 @@
 				<div>
 					
 				</div>
+
     </div>
+
+  </div>
 </template>
 
 <script>
@@ -39,8 +46,10 @@ export default {
 		return {
 			dataObj:{
 				username: '',
-				password:''
-			}
+				password:'',
+        
+			},
+      valid:true
 		}
 	},
 	methods:{
@@ -54,9 +63,12 @@ export default {
           this.$forceUpdate();
 					this.navega('/')
 				} else {
-					console.log(res)
+          this.valid = false;
+					window.$("#loginErrorModal").modal("show");
 				}
-			}).catch((err) => console.error(err))
+			}).catch(() => {
+        this.valid = false;
+      })
 		},
 		navega: function (route){
       router.push(route)
@@ -66,7 +78,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped>  
 	
 /* ==========================================================================
    #FONT
