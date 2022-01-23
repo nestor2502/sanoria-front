@@ -15,9 +15,6 @@
   <div v-if="errorRequest" class="container custom-my-5">
     <a href="/"><img src="../assets/img/notfoundmathces.jpeg"/></a>
   </div>
-  <div v-if="notFoundRequest" class="container custom-my-5">
-    <a href="/"><img src="../assets/img/somethinwashappendwrong.jpeg"/></a>
-  </div>
 </div>
 </template>
 
@@ -44,7 +41,6 @@ export default {
     if(this.$route.query.health) url += "&health="+this.$route.query.health
     if(this.$route.query.mealType) url += "&mealType="+this.$route.query.mealType
     this.successfulRequest = true
-    this.errorRequest = false
     this.notFoundRequest = false
     axios.get(url)
           .then( result => {
@@ -63,7 +59,7 @@ export default {
             }
             else{
               this.successfulRequest = false
-              this.errorRequest = true
+              window.$("#errorModal").modal("show");
               console.log("algo malo pasó :(")
             }
           }).catch(e => console.log(e))
