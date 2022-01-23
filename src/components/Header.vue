@@ -14,7 +14,7 @@
             <Slide v-if="!isRegister" noOverlay width="280" id="sidebar" :closeOnNavigation="true"
               @openMenu="onOverlay"
               @closeMenu="offOverlay">
-                <a id="profile" class="align-items-center pointer" @click="navega('/profile', false); closeMenu()">
+                <a id="profile" class="align-items-center pointer" @click="navega('/profile', false)">
                   <i class="far fa-user"></i>
                   <span>Profile</span>
                 </a>

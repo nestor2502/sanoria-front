@@ -176,6 +176,7 @@
         </div>
     </div>
     </div>
+    <!-- Confirm Modal -->
 
 </div>
 
@@ -257,7 +258,6 @@ export default{
             "image": this.recipe.image? this.recipe.image: "",
             "recipeUri": this.recipe.uri
         }
-        console.log(food)
         axios.post('https://sanoria-api.herokuapp.com/recipe', food)
             .then((res) => {
 				if (res.status === 201) {
