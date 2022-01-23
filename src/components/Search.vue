@@ -1,5 +1,8 @@
 <template>
-<div class="py-5">
+<div>
+  <Loader v-if="loading" style="margin-top: 15%;"/>
+  <div class="py-5">
+  
   <div v-if="successfulRequest" class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
       <div class="col"  v-for="item in recipes" :key="item.id" @click="navega('recipe?id='+ getRecipeId(item.uri))">
@@ -16,21 +19,27 @@
     <a href="/"><img src="../assets/img/notfoundmathces.jpeg"/></a>
   </div>
 </div>
+</div>
 </template>
 
 <script>
 import router from '../router'
 import axios from 'axios';
+import Loader from './Loader.vue'
 
 export default {
   name: 'Search',
   props: {
     msg: String
   },
+  components: {
+    Loader
+  },
   data(){
     return{
       recipeName: 'jajaj', 
-      recipes: []
+      recipes: [],
+      loading: true,
     }
   },
     created() {
@@ -42,8 +51,10 @@ export default {
     if(this.$route.query.mealType) url += "&mealType="+this.$route.query.mealType
     this.successfulRequest = true
     this.notFoundRequest = false
+    this.loading = true;
     axios.get(url)
           .then( result => {
+            this.loading = false;
             if(result.status == 200){
               let finalData = result.data.data;
               console.log(finalData)
@@ -62,7 +73,7 @@ export default {
               window.$("#errorModal").modal("show");
               console.log("algo malo pasó :(")
             }
-          }).catch(e => console.log(e))
+          }).catch(e => {console.log(e); this.loading = false;})
   },
   methods: {
     navega: function (route){
