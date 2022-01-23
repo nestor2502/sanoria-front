@@ -38,12 +38,12 @@
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectView(2)">Next </button>
-                              <!--button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button-->
+                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectRec(2)">Next </button>
+                              
                             </div>
                        </div>
                         
-                        <!--input type="button" value="Next" title="Next" class="btn btn--radius btn--green" @click="openPersonInfo"/-->
+                        
                     </form>
                 </div>
             </div>
@@ -67,11 +67,14 @@
                         <div class="input-group">
                             <input class="input--style-2" type="number" placeholder="Height" name="height" v-model="height">
                         </div>
-                        <div class="p-t-30">
-                            <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
-                              <i class="fas fas-arrow-right"> </i>
-                            </button >
-                        </div>
+                        <div class="form-group row">
+                            <div class="col text-center" >
+                              <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next</button> 
+                            </div>
+                            <div class="col text-center" >
+                               <button  class="btn btn--radius btn--green" @click="selectView(1)">Return </button>  
+                            </div>
+                       </div>
                     </form>
                 </div>
             </div>
@@ -183,12 +186,14 @@
                                 </div>
                             </div>
                           </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >Next
-                              <i class="fas fas-arrow-right"> </i>
-                            </button>
-                        </div>
-                    
+                           <div class="form-group row">
+                              <div class="col text-center" >
+                                <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >Next </button>
+                              </div>
+                              <div class="col text-center" >
+                                 <button  class="btn btn--radius btn--green" @click="selectView(2)">Return </button>  
+                              </div>
+                            </div>           
                 </div>
             </div>
         </div>
@@ -296,12 +301,16 @@
                               </div>
   
                         </div> 
+                        <div class="form-group row">
+                              <div class="col text-center" >
+                                <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP</button>
+                              </div>
+                              <div class="col text-center" >
+                                 <button  class="btn btn--radius btn--green" @click="selectView(3)">Return </button>  
+                              </div>
+                          </div>
                        
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP
-                              
-                            </button>
-                        </div>
+                        
                         </div>
 
                     </form>
@@ -411,6 +420,34 @@ import router from '../router';
             router.push({'name':'PersonInfo'})
           },
           selectView(viewId){
+            switch(viewId){
+              case 1: 
+                this.mostrarSignUp = true;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 2: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = true;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 3: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = true;
+                this.mostrarAle = false;
+                break
+              case 4: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = true;
+                break;
+            }
+          },
+          selectRec(viewId){
             switch(viewId){
               case 1: 
                 this.mostrarSignUp = true;
