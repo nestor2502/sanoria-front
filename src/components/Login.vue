@@ -68,7 +68,6 @@ export default {
 				}
 			}).catch(() => {
         this.valid = false;
-        window.$("#loginErrorModal").modal("show");
       })
 		},
 		navega: function (route){
