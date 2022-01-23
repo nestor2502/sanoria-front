@@ -98,7 +98,6 @@ export default {
   },
   created() {
     this.user = storage.getStorage('user')
-    console.log(this.user)
   },
   data() {
     return {

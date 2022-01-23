@@ -87,12 +87,29 @@
         <hr>
         <div id="btn-save-changes" class="row justify-content-end">
           <div class="col-sm-3">
-            <button type="button" class="btn btn-sm btn-save-changes" @click="updateUser"> Saves Changes</button>
+            <button type="button" class="btn btn-sm btn-save-changes" data-bs-toggle="modal" data-bs-target="#confirmEdit"> Saves Changes</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+      <!-- Confirm Modal -->
+    <div class="modal fade" id="confirmEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <div style="font-size: 1.5rem; padding: 2rem;">
+                Do you want to update your information?
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-center">
+            <button type="button" class="btn btn-confirm-modal" @click="updateUser" data-bs-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Confirm Modal -->
 </form>
 </template>
 
@@ -108,7 +125,6 @@ export default {
   },
   created() {
     this.user = storage.getStorage('user')
-    console.log(this.user)
     this.user.allergies.forEach(element => {
         this.userallergies[element.name] = true
     });
@@ -177,9 +193,10 @@ export default {
             .then((res) => {
 				if (res.status === 200) {
           storage.setStorage('user', res.data)
+          window.$("#successModal").modal("show");
           this.navega("/profile")
 				} else {
-					console.log("hubo un error")
+          window.$("#errorModal").modal("show");
 				}
 			}).catch((err) => console.log(err))
 

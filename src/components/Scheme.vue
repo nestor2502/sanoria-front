@@ -12,17 +12,16 @@
 
      <div class="row align-items-center">
         <div class="column">
-            <div class="nombre-esquema">
-                <p>Type of Schemes</p>
+            <div class="nombre-esquema" style="text-transform: capitalize;">
+                <p>{{schema}}</p>
             </div>
         </div>
-        <div class="column">
-            <!--checkbox-->
+        <!--div class="column">
             <input  class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
                 <label class="form-check-label" for="flexCheckDefault">
                   <p>Saves</p>
                 </label>
-        </div>
+        </div-->
     </div> 
 
   <div class="py-5">
@@ -31,19 +30,26 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div v-for="post in chunk" :key="post.id">
-                <div class="col" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)">
+                <!--div class="col" @click="navega(`/recipe?id=${getItemId(post.recipeUri)}&name=${post.label}`)"-->
+                <div class="col">
                     <div class="card shadow-sm">
                         <img :src="post.image">
                             <div class="card-body">
                                 <p class="card-text">{{post.label}}</p>
                                     <div class="d-flex justify-content-end align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-delete" @click="aux(post.id)"><i class="far fa-trash-alt"></i></button>
+                                            <button 
+                                              type="button" 
+                                              class="btn btn-sm btn-delete" d
+                                              data-bs-toggle="modal" 
+                                              data-bs-target="#confirmModalShema"
+                                              @click="selectItem(post.id)"><i class="far fa-trash-alt"></i></button>
                                         </div>
                                     </div>
                             </div>
                     </div>
-                </div>        
+                </div>   
+
             </div>
       </div>
     </div>
@@ -66,6 +72,25 @@
   </ul>
 </nav>
 
+                <!-- Confirm Modal -->
+  <div class="modal fade" id="confirmModalShema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-body">
+          <div style="font-size: 1.5rem; padding: 2rem;">
+              Do you want to remove this recipe?
+              {{toDelete}}
+          </div>
+      </div>
+      <div class="modal-footer modal-footer-center">
+          <button type="button" class="btn btn-confirm-modal" @click="aux(toDelete)" data-bs-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+      </div>
+      </div>
+  </div>
+  </div>
+  <!-- Confirm Modal --> 
+
 </div>
 
 
@@ -74,6 +99,7 @@
 <script>
 import axios from 'axios';
 import router from '../router'
+import storage from "../storage"
 
 export default {
   data() {
@@ -81,6 +107,8 @@ export default {
       posts: [],
       chunks: [],
       chunk: [],
+      schema: "",
+      toDelete: 0
     };
   },
 
@@ -88,6 +116,10 @@ export default {
     navega(route){
       router.push(route)
         .catch(() => {})
+    },
+    selectItem(id){
+      console.log("selecciona: ", id)
+      this.toDelete = id
     },
     getItemId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)
@@ -118,24 +150,16 @@ export default {
     selectChunk(n){
       this.chunk = this.chunks[n - 1];
   },
-  /**
-  borra(id){
-    fetch("https://sanoria-api.herokuapp.com/recipe/" + id,{
-      method:'DELETE'
-    }).then(response=>{
-      return response.json()
-    }).then(data=> 
-    // this is the data we get after putting our data,
-      console.log(data)
-      );
-    },*/
   async borra(id){
     return axios.delete(`https://sanoria-api.herokuapp.com/recipe/${id}`)
-     .then(res => res.data);
+     .then(res => {this.getData(); console.log(res)})
+     .catch(err => console.log(err))
   }
   },
   created() {
     this.getData();
+    let userTemp = storage.getStorage("user")
+    this.schema = userTemp.scheme.replace("-", " ");
   },
 
 };
