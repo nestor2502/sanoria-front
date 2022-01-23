@@ -9,41 +9,42 @@
                     <!--form  id="form" v-on:button.prevent="procesar()"-->
                     <form  id="form" >
                         <div class="input-group" id="app">
-                            <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username">
+                            <input class="input--style-2" type="text" placeholder="Name"  name="username" v-model="username" required/>
                             
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col text-muted">
                                 <div class="input-group">
-                                  <input @keypress="isNumber($event)" v-model="birth" placeholder="YYYY-MM-DD" type="date" maxlength="10" autofocus="autofocus">
+                                  <input class="input--style-2" @keypress="isNumber($event)" v-model="birth" placeholder="YYYY-MM-DD" type="date" maxlength="10" autofocus="autofocus" required>
                                     <!--input @keypress="isNumber($event)" class="input--style-2 js-datepicker" placeholder="__/__/____" type="email" name="age" maxlength="8" v-model="age"-->
                                 </div>
                             </div>
                         </div>
                       
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="input-group">
-                                    <input class="input--style-2 js-datepicker" type="email"  placeholder="E-mail" name="email" v-model="email">
+                                    <input class="input--style-2" type="email"  placeholder="E-mail" name="email" v-model="email" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="input-group">
-                                    <input class="input--style-2" type="password" placeholder="******" name="password" v-model="password">
+                                    <input class="input--style-2 " type="password" placeholder="******" name="password" v-model="password" required>
                                     
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col text-center" >
-                              <button class="btn btn--radius btn--green" @click="selectView(2)">Next </button>
-                              <!--button class="btn btn--radius btn--green" v-onClick="openPersonInfo" name="Click" >Next </button-->
+                              <button :disabled="habilitaBoton" class="btn btn--radius btn--green" @click="selectRec(2)">Next &nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+                              </button>
+                              
                             </div>
                        </div>
                         
-                        <!--input type="button" value="Next" title="Next" class="btn btn--radius btn--green" @click="openPersonInfo"/-->
+                        
                     </form>
                 </div>
             </div>
@@ -57,21 +58,32 @@
                 <div class="card-body">
                     <h2 class="title">Personal Info</h2>
                     <form >
-                        <div class="input-group">
-                            <input class="input--style-2" type="text" placeholder="Gender(Male or Female)" name="gender" v-model="gender">
+                        <div class="medidas input-group">
+                            <!-- <input class="input--style-2" type="text" placeholder="Gender(Male or Female)" name="gender" v-model="gender"> -->
+                            <select id="gender-select" class="form-select text-muted" aria-label="Default select example" v-model="gender">
+                                <option v-bind:value="''" selected disabled hidden>Gender</option>
+                                <option v-bind:value="'Female'">Female</option>
+                                <option v-bind:value="'Male'">Male</option>
+                            </select>
                         </div>
-     
-                        <div class="input-group">
-                            <input class="input--style-2" type="number" placeholder="Weight in Kg" name="weight" v-model="weight">
+                        <div class="input-group text-muted">
+                          <input type="number" placeholder="Weight" class="form-control input--style-2" v-model="weight"/> 
+                          <span class="input-group-text text-muted medida">kg</span>
                         </div>
-                        <div class="input-group">
-                            <input class="input--style-2" type="number" placeholder="Height" name="height" v-model="height">
+                        <div class="input-group text-muted">
+                          <input type="number" placeholder="Height" class="form-control input--style-2" v-model="height"/> 
+                          <span class="input-group-text text-muted medida">cm</span>
                         </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
-                              <i class="fas fas-arrow-right"> </i>
-                            </button >
-                        </div>
+                        <div class="form-group row">
+                            <div class="col text-center" >
+                              <button  class="btn btn--radius btn--green" @click="selectView(1)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button>  
+                              
+                            </div>
+                            <div class="col text-center" >
+                               <button :disabled="habilitaBoton2" class="btn btn--radius btn--green" type="button" @click="selectView(3)">Next
+                                  &nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button> 
+                            </div>
+                       </div>
                     </form>
                 </div>
             </div>
@@ -81,114 +93,191 @@
         <div v-if="mostrarDiet" class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
         <div class="wrapper wrapper--w960">
             <div class="card card-2">
-                <div class="card-heading"></div>
-                <div class="card-body">
+                <div class="card-heading "></div>
+                <div id="diet" class="card-body form-check form-group">
                     <h2 class="title">Diets</h2>
-                    <form >
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div>
-                                  <label class="form-check-label" for="flexCheckDefault">High-Fiber</label>
-                                  <input class="form-check-input"  type="checkbox" id="checkboxNoLabel" value="" aria-label="...">      
+                      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault0">
+                            High-Fiber
+                          </label>
+                          <input class="form-check-input" value="High-Fiber" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault0">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            High-Protein
+                          </label>
+                          <input class="form-check-input" value="High-Protein" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault1">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Low-Sodium
+                          </label>
+                          <input class="form-check-input" value="Low-Sodium" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault2">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault3">
+                            Low-fat
+                          </label>
+                          <input class="form-check-input" value="Low-fat" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault3">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault4">
+                            Low-Carb
+                          </label>
+                          <input class="form-check-input" value="Low-Carb" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault4">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault5">
+                            Balanced
+                          </label>
+                          <input class="form-check-input" value="Balanced" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault5">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault6">
+                            No oil added
+                          </label>
+                          <input class="form-check-input" value="No oil added" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault6">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault7">
+                            No-sugar
+                          </label>
+                          <input class="form-check-input" value="No-sugar" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault7">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault8">
+                            Pork-free
+                          </label>
+                          <input class="form-check-input" value="Pork-free" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault8">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault9">
+                            Red meat-free
+                          </label>
+                          <input class="form-check-input" value="Red meat-free" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault9">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault10">
+                            Vegan
+                          </label>
+                          <input class="form-check-input" value="Vegan" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault10">
+                        </div>
+                        <div class="col-2 form-check">
+                          <label class="form-check-label" for="flexRadioDefault11">
+                            Vegetarian
+                          </label>
+                          <input class="form-check-input" value="Vegetarian" type="radio" v-model="userdiet" name="flexRadioDefault" id="flexRadioDefault11">
+                        </div>
+                      </div>
+                        <!-- <div class="row row-space form-check">
+                            <div class="col-2 ">
+                                <div >
+                                  <label class="form-check-label" for="flexCheckDefault1">High-Fiber</label>
+                                  <input class="form-check-input"  type="radio" id="checkboxNoLabel1" value="" aria-label="...">      
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault1">
                                         High-Protein
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel2" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                             <div class="col-2">
-                                  <div><label class="form-check-label" for="flexCheckDefault">
+                                  <div><label class="form-check-label" for="flexCheckDefault2">
                                         Low-Sodium
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel3" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault3">
                                         Low-Carb
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel4" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-space">
+                        <div class="row row-space form-check">
                             <div class="col-2">
                                 <div>
-                                  <label class="form-check-label" for="flexCheckDefault">Low-Fat</label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                    
+                                  <label class="form-check-label" for="flexCheckDefault4">Low-Fat</label>
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel5" value="" aria-label="...">                                    
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault5">
                                         Balanced
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel6" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                             <div class="col-2">
-                                  <div><label class="form-check-label" for="flexCheckDefault">
+                                  <div><label class="form-check-label" for="flexCheckDefault6">
                                         No oil added
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel7" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault7">
                                         No-sugar
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel8" value="" aria-label="...">   
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-space">
+                        <div class="row row-space form-check">
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault8">
                                         Pork-free
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                                     
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel9" value="" aria-label="...">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault10">
                                         Red meat-free
                                     </label>
-                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">                                   
+                                    <input class="form-check-input" type="radio" id="checkboxNoLabel10" value="" aria-label="...">                                   
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div>
-                                  <label class="form-check-label" for="flexCheckDefault">
+                                  <label class="form-check-label" for="flexCheckDefault11">
                                         Vegan
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel11" value="" aria-label="...">
                                      
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div><label class="form-check-label" for="flexCheckDefault">
+                                <div><label class="form-check-label" for="flexCheckDefault12">
                                         Vegetarian
                                     </label>
-                                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                  <input class="form-check-input" type="radio" id="checkboxNoLabel12" value="" aria-label="...">
                                      
                                 </div>
                             </div>
-                          </div>
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >Next
-                              <i class="fas fas-arrow-right"> </i>
-                            </button>
-                        </div>
-                    </form>
+                          </div> -->
+                        <div class="form-group row">
+                              <div class="col text-center" >
+                                <button  class="btn btn--radius btn--green" @click="selectView(2)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button>
+                                
+                              </div>
+                              <div class="col text-center" >
+                                 <button class="btn btn--radius btn--green" type="button" @click="selectView(4)" >
+                                  Next &nbsp;&nbsp;<i class="fas fa-arrow-right"></i>
+                                   </button>
+                              </div>
+                            </div> 
+                    
                 </div>
             </div>
         </div>
@@ -296,12 +385,17 @@
                               </div>
   
                         </div> 
+                        <div class="form-group row">
+                              <div class="col text-center" >
+                                <button  class="btn btn--radius btn--green" @click="selectView(3)"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Return </button> 
+                                
+                              </div>
+                              <div class="col text-center" >
+                                  <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP</button>
+                              </div>
+                          </div>
                        
-                        <div class="p-t-30">
-                            <button class="btn btn--radius btn--green" type="button" @click="createUser">SIGN UP
-                              
-                            </button>
-                        </div>
+                        
                         </div>
 
                     </form>
@@ -318,6 +412,7 @@
 import storage from "../storage"
 import axios from 'axios';
 import router from '../router';
+
   
     export default {
 
@@ -328,18 +423,21 @@ import router from '../router';
               mostrarInfo: false,
               mostrarDiet: false,
               mostrarAle: false,
-              email: '',
               username: '',
+                
+              email: '',
+              
               birth: '',
               password: '',
               gender:'',
               height:'',
               weight:'',
-
+              userdiet: '',
               userdiets: {
                 "High-Fiber": false,
                 "High-Protein": false,
                 "Low-Sodium": false,
+                "Low-fat": false,
                 "Low-Carb": false,
                 "Balanced": false,
                 "No oil added": false,
@@ -369,8 +467,22 @@ import router from '../router';
               
             }
         },
+        computed:{
+          habilitaBoton: function() {
+            return !this.username || !this.email || !this.birth || !this.password ;
+            
+          },
+       
+        habilitaBoton2: function() {
+            return !this.gender || !this.weight || !this.height  ;
+            
+          },
+        },
         
         methods: { 
+       
+          
+          
           navega: function (route){
             router.push(route)
               .catch(() => {})
@@ -421,6 +533,34 @@ import router from '../router';
                 break;
             }
           },
+          selectRec(viewId){
+            switch(viewId){
+              case 1: 
+                this.mostrarSignUp = true;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 2: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = true;
+                this.mostrarDiet = false;
+                this.mostrarAle = false;
+                break;
+              case 3: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = true;
+                this.mostrarAle = false;
+                break
+              case 4: 
+                this.mostrarSignUp = false;
+                this.mostrarInfo = false;
+                this.mostrarDiet = false;
+                this.mostrarAle = true;
+                break;
+            }
+          },
           createUser(){
 
             let finalAllergies = [];
@@ -438,9 +578,9 @@ import router from '../router';
               birth: this.birth,
               weight: this.weight,
               height: this.height,
-              allergies: finalAllergies
+              allergies: finalAllergies,
+              scheme: this.userdiet
             }
-            console.log("userToCreate")
             console.log(userToCreate)
             axios.post('https://sanoria-api.herokuapp.com/user', userToCreate)
               .then((res) => {
@@ -452,7 +592,6 @@ import router from '../router';
                   console.log("hubo un error")
                 }
               }).catch((err) => console.log(err))
-
           }
         },
     }
@@ -463,9 +602,6 @@ import router from '../router';
 /* ==========================================================================
    #FONT
    ========================================================================== */
-.font-robo {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-}
 
 /* ==========================================================================
    #GRID
@@ -489,11 +625,6 @@ import router from '../router';
   justify-content: space-between;
 }
 
-.last-row-space {
-  -webkit-box-pack: justify;
-  -moz-box-pack: justify;
-  -ms-flex-pack: justify;
-}
 /* Nos dice cuantas columnas en Html hay*/
 .col-2 {
   width: -webkit-calc((100% - 60px) / 4);
@@ -587,11 +718,7 @@ button {
   min-height: 100vh;
 }
 
-body {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -679,7 +806,6 @@ h6 {
   padding: 0 25px;
   cursor: pointer;
   color: #fff;
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -715,7 +841,6 @@ td.active {
 
 .table-condensed td, .table-condensed th {
   font-size: 14px;
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
   font-weight: 400;
 }
 
@@ -1015,6 +1140,25 @@ input {
   background-color: green;
 }
 
+/*#diet .col input{
+  
+}*/
 
+#diet .col-2 {
+  padding: 5px 5px;
+}
+#gender-select {
+  text-align: justify;
+  border: none;
+}
 
+.medida {
+  padding-left: 5px;
+  border: none;
+  background: transparent;
+}
+
+.medidas {
+  padding: 15px 0px;
+}
 </style>
