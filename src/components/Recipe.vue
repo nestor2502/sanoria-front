@@ -225,7 +225,7 @@ export default{
                             for (var i = 0; i < arr.length; i++) {
                                 arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
                             }
-                            if(!this.recipe.healthLabels.includes(arr.join(" ").replace(" ", "-")+"-free")){
+                            if(!this.recipe.healthLabels.includes(arr.join(" ").replace(" ", "-")+"-Free")){
                                 //console.log("entra: ", arr.join(" ").replace(" ", "-")+"-free")
                                 this.warning = true;
                             }
