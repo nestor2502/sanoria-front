@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <div v-if="errorRequest" class="container custom-my-5">
+  <div v-if="notFoundRequest" class="container custom-my-5">
     <a href="/"><img src="../assets/img/notfoundmathces.jpeg"/></a>
   </div>
 </div>
