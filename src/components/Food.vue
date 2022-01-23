@@ -84,7 +84,7 @@
                         <div class="card h-100">
                         <img src="../assets/img/protein.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h3><span class="counter">{{protein}} g.</span></h3>
+                            <h3><span class="counter">{{protein}} g</span></h3>
                             <h5 class="card-title">Protein</h5>
                         </div>
                         </div>
