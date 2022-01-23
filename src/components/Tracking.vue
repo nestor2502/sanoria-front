@@ -1,4 +1,5 @@
 <template>
+
   <div id="tabs" class="container">
     <div class="tabs">
       <a
@@ -34,32 +35,23 @@
             </tr>
           </tbody>
         </table>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoMalestar">
+        <button type="button"
+                v-if="showNewButton"
+                class="btn btn-add-ache btn-block" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#collapseExample">
           New
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="nuevoMalestar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Ache</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <input v-model="malestar" type="text" id="malestar" class="form-control" aria-describedby="nameBlock">
-                <div id="nameBlock" class="form-text">
-                  Enter ache
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                  <input v-model="malestar" type="text" id="malestar" class="form-control" aria-describedby="nameBlock">
+                  <div class="modal-footer" style="display: block;">
+                    <button type="button" class="btn btn-c-atach" data-bs-toggle="modal" data-bs-target="#saveAche">Save changes</button>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click="nuevoMalestar(malestar)">Save changes</button>
-              </div>
             </div>
-          </div>
-        </div>
+
       </div>
       <div v-if="activetab === 2" class="tabcontent">
         <table class="table">
@@ -94,12 +86,31 @@
         </table>
       </div>
     </div>
+
+        <!-- Confirm Modal -->
+    <div class="modal fade" id="saveAche" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <div style="font-size: 1.5rem; padding: 2rem;">
+                Do you want to add this ache?
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-center">
+            <button type="button" class="btn btn-confirm-modal" @click="nuevoMalestar(malestar)" data-bs-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- Confirm Modal -->
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+  
 export default {
   name: "Tracking",
   data: function () {
@@ -109,7 +120,8 @@ export default {
       malestares: [],
       activetab: 1,
       userId: 1,
-      malestar: ''
+      malestar: '',
+      showNewButton: true,
     };
   },
   beforeMount() {
@@ -159,34 +171,28 @@ export default {
         this.malestar = ''
         this.showModal = false
         this.getMalestaresLog(this.userId)
+      
       })
       .catch((err) => console.error(err))
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-/* RESET */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 a {
   text-decoration: none;
   color: #f49839;
 }
 .container {
-  max-width: 620px;
-  min-width: 420px;
+  width: 100%;
   margin: 40px auto;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9em;
   color: #888;
 }
 
-/* Style the tabs */
 .tabs {
   overflow: hidden;
   margin-left: 20px;
@@ -213,13 +219,11 @@ a {
   border-right: 1px solid #ccc;
 }
 
-/* Change background color of tabs on hover */
 .tabs a:hover {
   background-color: #aaa;
   color: #fff;
 }
 
-/* Styling for active tab */
 .tabs a.active {
   background-color: #fff;
   color: #484848;
@@ -227,11 +231,64 @@ a {
   cursor: default;
 }
 
-/* Style the tab content */
 .tabcontent {
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 3px 3px 6px #e1e1e1;
+}
+
+.custom-btn{
+  display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.custom-btn:hover{
+   background-color: red;
+   border-color: red;
+}
+
+.custom-btn-primary {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-add-ache {
+  font-size: 18px;
+  color: #f49839;
+  border: 1px solid #f49839;
+}
+  
+.btn-add-ache:hover {
+  color: #fff;
+  background-color: #f49839;
+}
+
+.btn-c-atach {
+  color: #f49839;
+  border: 1px solid #abb545;
+  background-color: #abb545;
+  color: #fff;
+}
+  
+.btn-c-atach:hover {
+  color: #fff;
+  background-color: #848c2e;
 }
 </style>

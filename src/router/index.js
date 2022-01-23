@@ -3,11 +3,7 @@ import Router from 'vue-router'
 
 import storage from "../storage"
 
-import Home from  '@/components/Home'
 import Signup from '@/components/Signup'
-import PersonInfo from '@/components/PersonInfo'
-import AdicionalInfo from '@/components/Diet'
-import Allergies from '@/components/Allergies'
 import NotFound  from '@/components/NotFound'
 import Recipe from  '@/components/Recipe'
 import Food from  '@/components/Food'
@@ -17,8 +13,10 @@ import Tracking from '@/components/Tracking'
 import Search from  '@/components/Search'
 import Index from  '@/components/Index'
 import Profile from '@/components/Profile'
+import ProfileEdit from '@/components/ProfileEdit'
 
 Vue.use(Router);
+
 
 const routes = [
   {
@@ -32,29 +30,9 @@ const routes = [
     component: Index
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/personinfo',
-    name: 'PersonInfo',
-    component: PersonInfo,
-  },
-  {
     path: '/signup',
     name: 'Signup',
     component: Signup
-  },
-  {
-    path: '/diet',
-    name: 'Diet',
-    component: AdicionalInfo
-  },
-  {
-    path: '/allergies',
-    name: 'Allergies',
-    component: Allergies
   },
   { 
     path: "*", 
@@ -102,6 +80,14 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/profile-edit',
+    name: 'Profile-Edit',
+    component: ProfileEdit,
     meta: {
       requiresAuth: true
     }

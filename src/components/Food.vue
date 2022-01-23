@@ -35,20 +35,12 @@
                         <div class="receipe-headline my-5">
                             <h2>{{food.label}}</h2>
                             <div class="receipe-duration">
-                                <h6>Low Carb</h6>
+                                
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <div class="receipe-ratings text-right my-5">
-                            
-                            <a href="#" class="btn delicious-btn">
-                               <i class="fas fa-plus"></i>
-                                Add to schema
-                            </a>
-                        </div>
-                    </div>
+                    
                 </div>
                   
                 <div class="row row-cols-1 row-cols-md-5 g-3">
@@ -56,7 +48,7 @@
                         <div class="card h-100">
                         <img  src="../assets/img/kcal.jpg" class="card-img-top" alt="" width="20px">
                         <div class="card-body">
-                            <h3><span>52 Kcal</span></h3>
+                            <h3><span>{{kcal}} Kcal</span></h3>
                             <h5 class="card-title">Calories</h5>
                         </div>
                         </div>
@@ -65,17 +57,8 @@
                         <div class="card h-100">
                         <img src="../assets/img/fat.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h3><span class="counter">0 g.</span></h3>
+                            <h3><span class="counter">{{fat}} g</span></h3>
                             <h5 class="card-title">Fat</h5>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                        <img src="../assets/img/carbs.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h3><span class="counter">14 g.</span></h3>
-                            <h5 class="card-title">Carbohydrates</h5>
                         </div>
                         </div>
                     </div>
@@ -83,8 +66,17 @@
                         <div class="card h-100">
                         <img src="../assets/img/sugar.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h3><span class="counter">16 g.</span></h3>
-                            <h5 class="card-title">Sugars</h5>
+                            <h3><span class="counter">{{carb}} g</span></h3>
+                            <h5 class="card-title">Carbohydrates</h5>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/img/carbs.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h3><span class="counter">{{sugar}} g</span></h3>
+                            <h5 class="card-title">Fiber</h5>
                         </div>
                         </div>
                     </div>
@@ -92,7 +84,7 @@
                         <div class="card h-100">
                         <img src="../assets/img/protein.jpg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h3><span class="counter">0.4 g.</span></h3>
+                            <h3><span class="counter">{{protein}} g</span></h3>
                             <h5 class="card-title">Protein</h5>
                         </div>
                         </div>
@@ -114,15 +106,27 @@ import axios from 'axios';
 export default{
 	data(){
 		return{
-		food: {}
+		food: {},
+        kcal: "",
+        fat:"",
+        carb: "",
+        sugar: "",
+        protein:""
 		}
 	},
 	created() {
 		this.foodUri = this.$route.query.name
+        console.log(this.foodUri)
 		axios.get(`https://sanoria-api.herokuapp.com/food?ingr=${this.foodUri}`)
             .then( result => {
                 if(result.status == 200){
                     this.food = result.data.data[0];
+                    console.log(this.food)
+                    this.kcal = this.food.nutrients['ENERC_KCAL']? this.food.nutrients['ENERC_KCAL'] : 0
+                    this.fat = this.food.nutrients['FAT']? this.food.nutrients['FAT']: 0
+                    this.carb = this.food.nutrients['CHOCDF']? this.food.nutrients['CHOCDF']: 0
+                    this.sugar = this.food.nutrients['FIBTG']? this.food.nutrients['FIBTG']: 0
+                    this.protein = this.food.nutrients['PROCNT']
                 }
                 else{
                     console.log("algo malo pasó :(")
@@ -154,20 +158,6 @@ export default{
       else {
         return "";
       }
-    },
-    addToSchema(){
-        console.log("se agrega")
-        const food = {
-            "userId": 1,
-            "label": "pollo rostizado",
-            "image": "imageUrl",
-            "recipeUri": "adasdasdasd"
-        }
-        console.log(food)
-       //storage.setStorage('userTemp', {test: true});
-       //let value = storage.getStorage('userTemp')
-       //console.log(value)
-       //storage.removeStorage('books')
     },
     getFoodId(uriValue){
       let uri = uriValue.slice(uriValue.indexOf("_")+1)

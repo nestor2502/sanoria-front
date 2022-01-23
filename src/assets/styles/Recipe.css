@@ -127,11 +127,12 @@
     .receipe-headline h2 {
       font-size: 24px; } }
 .receipe-headline .receipe-duration {
-  border-left: 3px solid #f49839;
-  padding: 15px; }
+  /*border-left: 3px solid #f49839;*/
+  padding: 15px 15px 15px 0; }
   .receipe-headline .receipe-duration h6 {
     font-size: 15px;
-    margin-bottom: 5px; }
+    margin-bottom: 25px;
+    width: auto; padding-right: 1rem;}
     .receipe-headline .receipe-duration h6:last-child {
       margin-bottom: 0; }
 
@@ -180,9 +181,36 @@
 .ingredients .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
   background-color: #f49839; }
 
+@media only screen and (max-width: 769px) {
+  .delicious-btn{
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    min-width: 160px;
+    height: 60px;
+    color: #ffffff;
+    border: none;
+    border-left: 3px solid#e87702;
+    border-radius: 0;
+    padding: 0 30px;
+    font-size: 16px;
+    line-height: 58px;
+    font-weight: 600;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    text-transform: capitalize;
+    background-color: #f49839; }
 
+    .text-right{
+      text-align: center;
+    }
+    
+  }
+
+@media only screen and (min-width: 770px){
 /* Button */
 .delicious-btn {
+  margin-top: 8rem;
   display: inline-block;
   min-width: 160px;
   height: 60px;
@@ -198,6 +226,11 @@
   transition-duration: 500ms;
   text-transform: capitalize;
   background-color: #f49839; }
+
+  .text-right{
+    text-align: right;
+  }
+}
   .delicious-btn.active, .delicious-btn:hover, .delicious-btn:focus {
     font-size: 16px;
     font-weight: 600;
@@ -238,14 +271,11 @@
       height: 40px;
       line-height: 39px; } }
 
-.text-right{
-  text-align: right;
-}
 
 .single-preparation-step {
   position: relative;
   z-index: 1;
-  margin-bottom: 50px; }
+  margin-bottom: 30px; }
   .single-preparation-step h4 {
     color: #474747;
     -webkit-box-flex: 0;
@@ -256,7 +286,7 @@
     margin-bottom: 0; }
 
   .single-preparation-step p {
-    color: #9b9b9b;
+    color: #827f7f;
     font-size: 14px;
     line-height: 2;
     font-weight: 400;
@@ -300,11 +330,22 @@
     width: 80%;
     height: 500px; } }
 
-  @media only screen and (min-width: 992px) {
-    .recipe-image {
-      width: 70%;
-      height: 600px; } }
+@media only screen and (min-width: 992px) {
+  .recipe-image {
+    width: 70%;
+    height: 600px; } }
 
+.receipe-duration h6{
+  width: auto;
+  padding-bottom: rem;
+  display:inline-block;
+  border-left: 3px solid #f49839;
+  height: auto;
+}
 
-
+@media only screen and (min-width: 999px){
+  .nutriment-cards{
+    padding-right: 3.5rem;
+  }
+}
 

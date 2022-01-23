@@ -1,5 +1,5 @@
 <template>
-<div class="row mt-3">
+<div id="profile" class="row mt-3">
   <div class="col-md-4 mb-3">
     <div class="card">
       <div class="card-body">
@@ -7,6 +7,7 @@
           <img :src="'https://ui-avatars.com/api/?name='+user.name+'&background=f49839&size=128&rounded=true&color=ffffff'">
           <div class="mt-3">
             <h4>{{user.name}}</h4>
+            <button type="button" class="btn btn-sm btn-update" @click="navega('/profile-edit')">Edit profile &nbsp;<i class="far fa-edit"></i></button>
           </div>
         </div>
       </div>
@@ -97,7 +98,6 @@ export default {
   },
   created() {
     this.user = storage.getStorage('user')
-    console.log(this.user)
   },
   data() {
     return {

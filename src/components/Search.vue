@@ -1,6 +1,9 @@
 <template>
-<div class="py-5">
-  <div class="container">
+<div>
+  <Loader v-if="loading" style="margin-top: 15%;"/>
+  <div class="py-5">
+  
+  <div v-if="successfulRequest" class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
       <div class="col"  v-for="item in recipes" :key="item.id" @click="navega('recipe?id='+ getRecipeId(item.uri))">
         <div class="card shadow">
@@ -12,41 +15,63 @@
       </div>
     </div>
   </div>
+  <div v-if="notFoundRequest" class="container custom-my-5">
+    <a href="/"><img src="../assets/img/notfoundmathces.jpeg"/></a>
+  </div>
+</div>
 </div>
 </template>
 
 <script>
 import router from '../router'
 import axios from 'axios';
+import Loader from './Loader.vue'
 
 export default {
   name: 'Search',
   props: {
     msg: String
   },
+  components: {
+    Loader
+  },
   data(){
     return{
       recipeName: 'jajaj', 
-      recipes: []
+      recipes: [],
+      loading: true,
     }
   },
     created() {
     //console.log(this.$router.currentRoute.path); // path is /post
     //console.log(this.$route.query.q) 
-    this.recipeName = this.$route.query.q
-    axios.get(`https://sanoria-api.herokuapp.com/recipe/search?recipeName=${this.recipeName}`)
+    let url = `https://sanoria-api.herokuapp.com/recipe/search?recipeName=${this.$route.query.q}`
+    if(this.$route.query.schema) url += "&schema="+this.$route.query.schema
+    if(this.$route.query.health) url += "&health="+this.$route.query.health
+    if(this.$route.query.mealType) url += "&mealType="+this.$route.query.mealType
+    this.successfulRequest = true
+    this.notFoundRequest = false
+    this.loading = true;
+    axios.get(url)
           .then( result => {
+            this.loading = false;
             if(result.status == 200){
               let finalData = result.data.data;
+              if (finalData.length == 0) {
+                this.successfulRequest = false
+                this.notFoundRequest = true
+              } 
               finalData.forEach(element => {
                 element.image = this.getImgUrl(element.image)
               });
               this.recipes = finalData
             }
             else{
+              this.successfulRequest = false
+              window.$("#errorModal").modal("show");
               console.log("algo malo pasó :(")
             }
-          }).catch(e => console.log(e))
+          }).catch(e => {console.log(e); this.loading = false;})
   },
   methods: {
     navega: function (route){
