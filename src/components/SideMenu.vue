@@ -199,35 +199,34 @@
 </script>
 
 <style>
-    @import url(../assets/styles/Header.css);
     html {
       height: 100%;
     }
     .bm-burger-button {
-       height: 25px;
-        left: 0px;
-        position: relative;
-        top: 0px;
-        width: 30px;
-      cursor: pointer;
+       height: 25px!important;
+        left: 0px!important;
+        position: relative!important;
+        top: 0px!important;
+        width: 30px!important;
+      cursor: pointer!important;
     }
     .bm-burger-button.hidden {
       display: none;
     }
     .bm-burger-bars {
-    background-color: #abb545;
+        background-color: #abb545!important;
     }
     .line-style {
-    position: absolute;
-    height: 11%;
-    left: 0;
-    right: 0;
+        position: absolute!important;
+        height: 11% !important;
+        left: 0!important;
+        right: 0!important;
     }
     .cross-style {
-      position: absolute;
-      top: 12px;
-      right: 2px;
-      cursor: pointer;
+      position: absolute!important;
+      top: 12px!important;
+      right: 2px!important;
+      cursor: pointer!important;
     }
     .bm-cross {
       background: #bdc3c7;
@@ -246,7 +245,7 @@
       z-index: 1000; /* Stay on top */
       top: 0;
       left: 0;
-      background-color: #f49839; /* Black*/
+      background-color: #f49839 !important; /* orange*/
       overflow-x: hidden; /* Disable horizontal scroll */
       padding-top: 60px; /* Place content 60px from the top */
       transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
@@ -255,25 +254,25 @@
       background: rgba(0, 0, 0, 0.3);
     }
     .bm-item-list {
-      color: #b8b7ad;
-      margin-left: 10%;
-      font-size: 20px;
+      color: #b8b7ad !important;
+      margin-left: 10%!important;
+      font-size: 20px!important;
     }
     .bm-item-list > * {
       display: flex;
       text-decoration: none;
       padding: 0.7em;
-    }
+    }       
     .bm-item-list > * > span {
       margin-left: 10px;
       font-weight: 700;
       color: white;
     }
     #sign-out {
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  width: 75%;
-  position: absolute;
-  bottom: 0px;
-  padding-bottom: 40px;
-}
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    width: 75%;
+    position: absolute;
+    bottom: 0px;
+    padding-bottom: 40px;
+    }
 </style>
